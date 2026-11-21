@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ОГЭ · Тепловые явления — тренажёр</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { min-height: 100vh; font-family: "Segoe UI", Roboto, Arial, sans-serif; color: #1f2937;
+               background: radial-gradient(circle at 15% 20%, #c7d2fe 0, transparent 40%),
+                           radial-gradient(circle at 85% 80%, #a5f3fc 0, transparent 40%),
+                           linear-gradient(135deg, #eef2ff, #f0fdfa);
+               background-attachment: fixed; padding: 40px 20px; font-size: 19px; line-height: 1.65; }
+        .wrap { max-width: 820px; margin: 0 auto; }
+        .nav { display: flex; flex-wrap: wrap; gap: 18px; margin-bottom: 24px; }
+        .back { color: #4338ca; text-decoration: none; font-weight: 600; font-size: 17px; }
+        .back:hover { text-decoration: underline; }
+        h1 { font-size: clamp(28px, 4vw, 40px); color: #312e81; text-align: center; margin-bottom: 6px; }
+        .subtitle { text-align: center; color: #4b5563; margin-bottom: 24px; font-size: 18px; }
+
+        .info { background: #fff; border-radius: 18px; padding: 18px 24px; margin-bottom: 28px;
+                box-shadow: 0 8px 22px rgba(30,41,59,.08); border-left: 6px solid #f59e0b; font-size: 17px; }
+        .score { margin-top: 6px; font-weight: 700; color: #312e81; }
+
+        /* Шпаргалка (сворачиваемая) */
+        .cheat { background: #fff; border-radius: 18px; margin-bottom: 20px; overflow: hidden;
+                 box-shadow: 0 8px 22px rgba(30,41,59,.10); border-top: 6px solid #6366f1; }
+        .cheat summary { cursor: pointer; padding: 18px 24px; font-size: 22px; font-weight: 700; color: #312e81;
+                         list-style: none; display: flex; align-items: center; flex-wrap: wrap; gap: 6px 12px; }
+        .cheat summary::-webkit-details-marker { display: none; }
+        .cheat summary::after { content: "▼"; margin-left: auto; font-size: 16px; color: #6366f1; transition: transform .25s; }
+        .cheat[open] summary::after { transform: rotate(180deg); }
+        .cheat summary:hover { background: #f5f7ff; }
+        .cheat .hint { font-size: 15px; font-weight: 400; color: #6b7280; }
+        .cheat[open] .hint { display: none; }
+        .formulas { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 14px;
+                    padding: 4px 24px 24px; }
+        .f { background: #eef2ff; border-radius: 14px; padding: 14px 16px; text-align: center; }
+        .f .name { display: block; font-size: 15px; font-weight: 600; color: #4b5563; margin-bottom: 6px; }
+        .f .eq { display: block; font-family: "Cambria Math", "Times New Roman", serif; font-size: 26px;
+                 font-style: italic; color: #1e1b4b; white-space: nowrap; }
+        .f .eq sub { font-size: 16px; }
+        /* Дробь: числитель над знаменателем */
+        .frac { display: inline-flex; flex-direction: column; vertical-align: middle; text-align: center; line-height: 1.2; }
+        .frac > span:first-child { border-bottom: 2px solid currentColor; padding: 0 4px 2px; }
+        .frac > span:last-child { padding: 2px 4px 0; }
+
+        .task { background: #fff; border-radius: 18px; padding: 26px 26px 22px; margin-bottom: 24px;
+                box-shadow: 0 8px 22px rgba(30,41,59,.10); border-top: 6px solid #f59e0b; }
+        .task h2 { font-size: 22px; color: #111827; margin-bottom: 4px; }
+        .tag { display: inline-block; padding: 2px 12px; border-radius: 999px; font-size: 13px; font-weight: 600;
+               color: #fff; background: #ea580c; margin-bottom: 12px; }
+        .task p { margin-bottom: 14px; }
+
+        .answer { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
+        .answer label { font-weight: 600; }
+        .answer input { width: 140px; padding: 10px 14px; font: inherit; border: 2px solid #c7d2fe;
+                        border-radius: 12px; outline: none; }
+        .answer input:focus { border-color: #6366f1; }
+        .unit { font-weight: 700; color: #9a3412; background: #ffedd5; padding: 4px 12px; border-radius: 999px; }
+        button { font: inherit; font-size: 17px; font-weight: 600; border: 0; border-radius: 999px;
+                 padding: 10px 22px; cursor: pointer; transition: background .2s, transform .2s; }
+        button:hover { transform: translateY(-2px); }
+        .btn-check { background: #4338ca; color: #fff; }
+        .btn-check:hover { background: #312e81; }
+        .btn-show { background: #eef2ff; color: #4338ca; }
+        .btn-show:hover { background: #e0e7ff; }
+
+        .result { margin-top: 12px; font-weight: 700; font-size: 17px; min-height: 1em; }
+        .ok  { color: #059669; }
+        .bad { color: #dc2626; }
+        .solution { display: none; margin-top: 14px; padding: 14px 18px; background: #fefce8;
+                    border-left: 4px solid #facc15; border-radius: 10px; font-size: 17px; }
+        .solution.open { display: block; }
+        .solution p { margin-bottom: 4px; }
+
+        .finish { text-align: center; margin-top: 36px; }
+        .finish a { display: inline-block; padding: 14px 30px; border-radius: 999px; color: #fff; font-weight: 700;
+                    text-decoration: none; background: linear-gradient(135deg, #6366f1, #4338ca);
+                    box-shadow: 0 10px 25px rgba(30,41,59,.18); transition: transform .25s, box-shadow .25s; }
+        .finish a:hover { transform: translateY(-4px); box-shadow: 0 16px 32px rgba(30,41,59,.25); }
+        footer { margin-top: 40px; text-align: center; color: #6b7280; font-size: 14px; }
+    </style>
+</head>
+<body>
+<div class="wrap">
+    <div class="nav">
+        <a class="back" href="oge-index.html">← К темам ОГЭ</a>
+        <a class="back" href="../index.html">⌂ На главную</a>
+    </div>
+
+    <h1>🔥 Тепловые явления</h1>
+    <p class="subtitle">Тренажёр ОГЭ · 8–9 класс · задания с кратким ответом</p>
+
+    <details class="cheat">
+        <summary>📒 Шпаргалка по тепловым явлениям <span class="hint">нажмите, чтобы открыть</span></summary>
+        <div class="formulas">
+            <div class="f"><span class="name">Нагревание / охлаждение</span><span class="eq">Q = c · m · Δt</span></div>
+            <div class="f"><span class="name">Плавление</span><span class="eq">Q = λ · m</span></div>
+            <div class="f"><span class="name">Парообразование</span><span class="eq">Q = L · m</span></div>
+            <div class="f"><span class="name">Сгорание топлива</span><span class="eq">Q = q · m</span></div>
+            <div class="f"><span class="name">КПД теплового двигателя</span><span class="eq">η = <span class="frac"><span>A<sub>пол</sub></span><span>Q<sub>затр</sub></span></span> · 100%</span></div>
+        </div>
+    </details>
+
+    <div class="info">
+        Впишите ответ <b>числом</b> в указанных единицах и нажмите «Проверить».
+        Десятичную дробь можно писать через запятую или точку. Тепловыми потерями пренебречь, если не сказано иное.
+        <div class="score">Решено: <span id="score">0</span> из 5</div>
+    </div>
+
+    <!-- Задача 1 -->
+    <div class="task" data-answer="420">
+        <h2>Задача 1</h2>
+        <span class="tag">Нагревание воды</span>
+        <p>Какое количество теплоты необходимо, чтобы нагреть 2 кг воды от 20 °С до 70 °С?
+           Удельная теплоёмкость воды 4200 Дж/(кг·°С). <b>Ответ дайте в килоджоулях (кДж).</b></p>
+        <div class="answer">
+            <label>Ответ:</label><input type="text" inputmode="decimal" autocomplete="off"><span class="unit">кДж</span>
+            <button type="button" class="btn-check">Проверить</button>
+            <button type="button" class="btn-show">Решение</button>
+        </div>
+        <div class="result"></div>
+        <div class="solution">
+            <p>Изменение температуры: Δt = 70 − 20 = 50 °С.</p>
+            <p>Q = c · m · Δt = 4200 · 2 · 50 = 420 000 Дж.</p>
+            <p>Переводим в килоджоули (1 кДж = 1000 Дж): Q = <b>420 кДж</b>.</p>
+        </div>
+    </div>
+
+    <!-- Задача 2 -->
+    <div class="task" data-answer="0.5">
+        <h2>Задача 2</h2>
+        <span class="tag">Плавление льда</span>
+        <p>Какую массу льда, взятого при температуре плавления 0 °С, можно расплавить, сообщив ему
+           165 кДж теплоты? Удельная теплота плавления льда 3,3 · 10<sup>5</sup> Дж/кг. <b>Ответ дайте в килограммах (кг).</b></p>
+        <div class="answer">
+            <label>Ответ:</label><input type="text" inputmode="decimal" autocomplete="off"><span class="unit">кг</span>
+            <button type="button" class="btn-check">Проверить</button>
+            <button type="button" class="btn-show">Решение</button>
+        </div>
+        <div class="result"></div>
+        <div class="solution">
+            <p>Лёд уже при 0 °С, поэтому вся теплота идёт только на плавление: Q = λ · m.</p>
+            <p>Отсюда m = Q / λ. Переводим Q в джоули: 165 кДж = 165 000 Дж.</p>
+            <p>m = 165 000 / 330 000 = <b>0,5 кг</b>.</p>
+        </div>
+    </div>
+
+    <!-- Задача 3 -->
+    <div class="task" data-answer="13.8">
+        <h2>Задача 3</h2>
+        <span class="tag">Сгорание топлива</span>
+        <p>Какое количество теплоты выделится при полном сгорании 300 г керосина?
+           Удельная теплота сгорания керосина 4,6 · 10<sup>7</sup> Дж/кг. <b>Ответ дайте в мегаджоулях (МДж).</b></p>
+        <div class="answer">
+            <label>Ответ:</label><input type="text" inputmode="decimal" autocomplete="off"><span class="unit">МДж</span>
+            <button type="button" class="btn-check">Проверить</button>
+            <button type="button" class="btn-show">Решение</button>
+        </div>
+        <div class="result"></div>
+        <div class="solution">
+            <p>Переводим массу в килограммы: 300 г = 0,3 кг.</p>
+            <p>Q = q · m = 46 000 000 · 0,3 = 13 800 000 Дж.</p>
+            <p>Переводим в мегаджоули (1 МДж = 1 000 000 Дж): Q = <b>13,8 МДж</b>.</p>
+        </div>
+    </div>
+
+    <!-- Задача 4 -->
+    <div class="task" data-answer="35">
+        <h2>Задача 4</h2>
+        <span class="tag">Тепловой баланс</span>
+        <p>В сосуд, содержащий 3 кг воды при температуре 20 °С, налили 1 кг воды при температуре 80 °С.
+           Какой станет температура воды после установления теплового равновесия?
+           Теплообменом с сосудом и окружающей средой пренебречь. <b>Ответ дайте в градусах Цельсия (°С).</b></p>
+        <div class="answer">
+            <label>Ответ:</label><input type="text" inputmode="decimal" autocomplete="off"><span class="unit">°С</span>
+            <button type="button" class="btn-check">Проверить</button>
+            <button type="button" class="btn-show">Решение</button>
+        </div>
+        <div class="result"></div>
+        <div class="solution">
+            <p>Горячая вода отдаёт столько теплоты, сколько получает холодная: Q<sub>отд</sub> = Q<sub>пол</sub>.</p>
+            <p>c · m<sub>гор</sub> · (80 − t) = c · m<sub>хол</sub> · (t − 20). Теплоёмкость c одинаковая — сокращаем.</p>
+            <p>1 · (80 − t) = 3 · (t − 20) → 80 − t = 3t − 60 → 4t = 140.</p>
+            <p>t = <b>35 °С</b>.</p>
+        </div>
+    </div>
+
+    <!-- Задача 5 -->
+    <div class="task" data-answer="25">
+        <h2>Задача 5</h2>
+        <span class="tag">КПД теплового двигателя</span>
+        <p>Тепловой двигатель получил от сгорания топлива 36 кДж энергии и совершил при этом
+           полезную работу 9 кДж. Определите КПД двигателя. <b>Ответ дайте в процентах (%).</b></p>
+        <div class="answer">
+            <label>Ответ:</label><input type="text" inputmode="decimal" autocomplete="off"><span class="unit">%</span>
+            <button type="button" class="btn-check">Проверить</button>
+            <button type="button" class="btn-show">Решение</button>
+        </div>
+        <div class="result"></div>
+        <div class="solution">
+            <p>Полезная работа A<sub>пол</sub> = 9 кДж, затраченная энергия Q<sub>затр</sub> = 36 кДж.</p>
+            <p>η = A<sub>пол</sub> / Q<sub>затр</sub> · 100% = 9 / 36 · 100% = 0,25 · 100% = <b>25 %</b>.</p>
+            <p>Единицы (кДж) одинаковые, поэтому переводить в джоули не нужно.</p>
+        </div>
+    </div>
+
+    <div class="finish">
+        <a href="oge-index.html">← Вернуться к выбору тем</a>
+    </div>
+
+    <footer>© Образовательный сайт по физике</footer>
+</div>
+
+<script>
+    (function () {
+        var solved = 0;
+        var scoreEl = document.getElementById('score');
+
+        // Превращает ввод ученика в число: убирает пробелы, запятую меняет на точку.
+        // Если введено не число — возвращает null.
+        function toNumber(text) {
+            var s = text.replace(/\s+/g, '').replace(',', '.');
+            if (s === '' || !/^[-+]?\d*\.?\d+$/.test(s)) return null;
+            return parseFloat(s);
+        }
+
+        document.querySelectorAll('.task').forEach(function (task) {
+            var correct = parseFloat(task.getAttribute('data-answer'));
+            var input = task.querySelector('input');
+            var result = task.querySelector('.result');
+            var solution = task.querySelector('.solution');
+            var done = false;
+
+            function check() {
+                var value = toNumber(input.value);
+                if (value === null) {
+                    result.textContent = 'Введите ответ числом.';
+                    result.className = 'result bad';
+                    return;
+                }
+                if (Math.abs(value - correct) < 1e-9) {
+                    result.textContent = '✅ Верно!';
+                    result.className = 'result ok';
+                    if (!done) { done = true; solved++; scoreEl.textContent = solved; }
+                } else {
+                    result.textContent = '❌ Неверно. Попробуйте ещё раз или посмотрите решение.';
+                    result.className = 'result bad';
+                }
+            }
+
+            task.querySelector('.btn-check').addEventListener('click', check);
+            input.addEventListener('keydown', function (e) { if (e.key === 'Enter') check(); });
+            task.querySelector('.btn-show').addEventListener('click', function () {
+                solution.classList.toggle('open');
+            });
+        });
+    })();
+</script>
+</body>
+</html>

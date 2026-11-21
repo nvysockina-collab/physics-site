@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Тренажер по динамике</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4f7f6; color: #333; line-height: 1.6; margin: 0; padding: 20px; }
+        .container { max-width: 800px; margin: 0 auto; }
+        .header { background-color: #2c3e50; color: white; padding: 20px; border-radius: 8px; margin-bottom: 20px; text-align: center; }
+        .header h1 { margin: 0; font-size: 24px; }
+        .header p { margin: 5px 0 0; font-size: 14px; opacity: 0.8; }
+        .info-box { background-color: #e8f4f8; border-left: 4px solid #3498db; padding: 15px; border-radius: 4px; margin-bottom: 20px; font-size: 14px; }
+        .score-box { font-weight: bold; color: #2c3e50; margin-top: 10px; }
+        .formula-box { background-color: #fff; padding: 15px; border-radius: 8px; margin-bottom: 20px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+        .formula-box summary { cursor: pointer; font-weight: bold; color: #3498db; }
+        .formula-box ul { margin-top: 10px; padding-left: 20px; }
+        .task-card { background-color: #fff; padding: 20px; border-radius: 8px; margin-bottom: 15px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+        .task-card h3 { margin-top: 0; color: #2c3e50; font-size: 18px; }
+        .tag { background-color: #e0e0e0; color: #555; padding: 2px 8px; border-radius: 12px; font-size: 12px; font-weight: bold; }
+        .task-text { margin: 15px 0; }
+        .input-group { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+        input[type="text"] { padding: 8px 12px; border: 1px solid #ccc; border-radius: 4px; width: 100px; font-size: 16px; }
+        button { padding: 8px 16px; border: none; border-radius: 4px; cursor: pointer; font-size: 14px; font-weight: bold; transition: background 0.3s; }
+        .btn-check { background-color: #3498db; color: white; }
+        .btn-check:hover { background-color: #2980b9; }
+        .btn-show { background-color: #ecf0f1; color: #333; }
+        .btn-show:hover { background-color: #bdc3c7; }
+        .result { margin-top: 10px; font-weight: bold; font-size: 14px; }
+        .correct { color: #27ae60; }
+        .incorrect { color: #e74c3c; }
+        .solution { display: none; margin-top: 15px; padding: 15px; background-color: #f9f9f9; border-left: 3px solid #f1c40f; font-size: 14px; }
+        .solution p { margin: 5px 0; }
+
+        /* ===== Общий стиль сайта: нежный фон, крупный шрифт, кнопка возврата ===== */
+        body {
+            background: radial-gradient(circle at 15% 20%, #c7d2fe 0, transparent 40%),
+                        radial-gradient(circle at 85% 80%, #a5f3fc 0, transparent 40%),
+                        linear-gradient(135deg, #eef2ff, #f0fdfa);
+            background-attachment: fixed;
+            font-size: 19px;
+            line-height: 1.65;
+        }
+        .back-link {
+            display: inline-block;
+            margin: 0 0 18px;
+            padding: 10px 20px;
+            background: #fff;
+            color: #4338ca;
+            font-weight: 600;
+            font-size: 17px;
+            text-decoration: none;
+            border-radius: 999px;
+            box-shadow: 0 4px 12px rgba(30, 41, 59, .12);
+            transition: transform .2s, box-shadow .2s;
+        }
+        .back-link:hover { transform: translateY(-2px); box-shadow: 0 8px 18px rgba(30, 41, 59, .18); }
+        .header h1 { font-size: 30px; }
+        .header p { font-size: 17px; }
+        .info-box, .result, .solution { font-size: 17px; }
+        .task-card h3 { font-size: 21px; }
+        .tag { font-size: 14px; }
+        input[type="text"] { font-size: 19px; }
+        button { font-size: 17px; padding: 10px 18px; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <a class="back-link" href="index.html">← Вернуться в каталог тренажёров</a>
+    <div class="header">
+        <h1>Тренажер по физике: Динамика</h1>
+        <p>Законы Ньютона, силы в природе. 9-10 класс</p>
+    </div>
+
+    <div class="info-box">
+        <p><strong>Инструкция:</strong> Решите задачу, введите числовой ответ в указанных единицах и нажмите «Проверить».</p>
+        <p>Дробную часть можно писать через точку или запятую. Ускорение свободного падения принимайте равным <strong>g = 10 м/с²</strong>.</p>
+        <div class="score-box">Решено верно: <span id="score">0</span> из 10</div>
+    </div>
+
+    <details class="formula-box">
+        <summary>▶ Шпаргалка: основные формулы динамики</summary>
+        <ul>
+            <li><strong>Второй закон Ньютона:</strong> F = m · a (Сила = масса × ускорение)</li>
+            <li><strong>Сила тяжести / Вес покоящегося тела:</strong> F = m · g</li>
+            <li><strong>Вес тела в лифте (движение вверх):</strong> P = m · (g + a)</li>
+            <li><strong>Сила трения:</strong> F<sub>тр</sub> = μ · N (где N — сила нормальной реакции опоры)</li>
+            <li><strong>Закон Гука:</strong> F<sub>упр</sub> = k · Δx (k — жесткость, Δx — удлинение)</li>
+            <li><strong>Импульс тела:</strong> p = m · v</li>
+        </ul>
+    </details>
+
+    <!-- Задача 1 -->
+    <div class="task-card" data-answer="20">
+        <h3>Задача 1. Второй закон Ньютона</h3>
+        <span class="tag">Законы Ньютона</span>
+        <p class="task-text">Тело массой 4 кг движется с ускорением 5 м/с². Какая сила действует на тело?</p>
+        <div class="input-group">
+            <label>Ответ:</label>
+            <input type="text" class="answer-input">
+            <span>Н</span>
+            <button class="btn-check" onclick="checkAnswer(this)">Проверить</button>
+            <button class="btn-show" onclick="toggleSolution(this)">Показать решение</button>
+        </div>
+        <div class="result"></div>
+        <div class="solution">
+            <p>По второму закону Ньютона: F = m · a.</p>
+            <p>F = 4 кг · 5 м/с² = 20 Н.</p>
+        </div>
+    </div>
+
+    <!-- Задача 2 -->
+    <div class="task-card" data-answer="3">
+        <h3>Задача 2. Ускорение</h3>
+        <span class="tag">Законы Ньютона</span>
+        <p class="task-text">На тело массой 6 кг действует сила 18 Н. С каким ускорением движется тело?</p>
+        <div class="input-group">
+            <label>Ответ:</label>
+            <input type="text" class="answer-input">
+            <span>м/с²</span>
+            <button class="btn-check" onclick="checkAnswer(this)">Проверить</button>
+            <button class="btn-show" onclick="toggleSolution(this)">Показать решение</button>
+        </div>
+        <div class="result"></div>
+        <div class="solution">
+            <p>Из второго закона Ньютона: a = F / m.</p>
+            <p>a = 18 Н / 6 кг = 3 м/с².</p>
+        </div>
+    </div>
+
+    <!-- Задача 3 -->
+    <div class="task-card" data-answer="0">
+        <h3>Задача 3. Первый закон Ньютона</h3>
+        <span class="tag">Законы Ньютона</span>
+        <p class="task-text">Автомобиль движется прямолинейно и равномерно. Чему равна равнодействующая всех сил, приложенных к автомобилю?</p>
+        <div class="input-group">
+            <label>Ответ:</label>
+            <input type="text" class="answer-input">
+            <span>Н</span>
+            <button class="btn-check" onclick="checkAnswer(this)">Проверить</button>
+            <button class="btn-show" onclick="toggleSolution(this)">Показать решение</button>
+        </div>
+        <div class="result"></div>
+        <div class="solution">
+            <p>Равномерное прямолинейное движение означает, что ускорение равно нулю (a = 0).</p>
+            <p>Следовательно, по второму закону Ньютона равнодействующая сила F = m · 0 = 0 Н.</p>
+        </div>
+    </div>
+
+    <!-- Задача 4 -->
+    <div class="task-card" data-answer="50">
+        <h3>Задача 4. Сила тяжести</h3>
+        <span class="tag">Силы в природе</span>
+        <p class="task-text">Какова сила тяжести, действующая на тело массой 5 кг? (g = 10 м/с²)</p>
+        <div class="input-group">
+            <label>Ответ:</label>
+            <input type="text" class="answer-input">
+            <span>Н</span>
+            <button class="btn-check" onclick="checkAnswer(this)">Проверить</button>
+            <button class="btn-show" onclick="toggleSolution(this)">Показать решение</button>
+        </div>
+        <div class="result"></div>
+        <div class="solution">
+            <p>Сила тяжести вычисляется по формуле: F = m · g.</p>
+            <p>F = 5 кг · 10 м/с² = 50 Н.</p>
+        </div>
+    </div>
+
+    <!-- Задача 5 -->
+    <div class="task-card" data-answer="720">
+        <h3>Задача 5. Вес в лифте</h3>
+        <span class="tag">Силы в природе</span>
+        <p class="task-text">Человек массой 60 кг находится в лифте, который движется вертикально вверх с ускорением 2 м/с². Каков вес человека в этот момент? (g = 10 м/с²)</p>
+        <div class="input-group">
+            <label>Ответ:</label>
+            <input type="text" class="answer-input">
+            <span>Н</span>
+            <button class="btn-check" onclick="checkAnswer(this)">Проверить</button>
+            <button class="btn-show" onclick="toggleSolution(this)">Показать решение</button>
+        </div>
+        <div class="result"></div>
+        <div class="solution">
+            <p>При движении лифта с ускорением вверх вес тела увеличивается (перегрузка).</p>
+            <p>Формула: P = m · (g + a).</p>
+            <p>P = 60 · (10 + 2) = 60 · 12 = 720 Н. <em>(Внимание: в поле ответа введите 720, так как это реальный вес, но если тест сгенерирован неверно и ответ 720 — это ошибка. Правильный ответ 720!)*</em></p>
+            <p><strong>Ой, простите, в коде data-answer="720", я исправлю в следующем сообщении! Но правильный физический ответ: 720 Н.</strong></p>
+        </div>
+    </div>
+
+    <!-- Задача 6 -->
+    <div class="task-card" data-answer="15">
+        <h3>Задача 6. Сила трения</h3>
+        <span class="tag">Силы в природе</span>
+        <p class="task-text">Брусок массой 3 кг равномерно тянут по горизонтальной поверхности. Коэффициент трения μ = 0,5. Чему равна сила трения? (g = 10 м/с²)</p>
+        <div class="input-group">
+            <label>Ответ:</label>
+            <input type="text" class="answer-input">
+            <span>Н</span>
+            <button class="btn-check" onclick="checkAnswer(this)">Проверить</button>
+            <button class="btn-show" onclick="toggleSolution(this)">Показать решение</button>
+        </div>
+        <div class="result"></div>
+        <div class="solution">
+            <p>Сила трения: F<sub>тр</sub> = μ · N.</p>
+            <p>На горизонтальной поверхности сила нормальной реакции N = m · g.</p>
+            <p>F<sub>тр</sub> = 0,5 · 3 · 10 = 15 Н.</p>
+        </div>
+    </div>
+
+    <!-- Задача 7 -->
+    <div class="task-card" data-answer="12">
+        <h3>Задача 7. Равнодействующая сила</h3>
+        <span class="tag">Законы Ньютона</span>
+        <p class="task-text">К телу приложены две силы, направленные в одну сторону: F₁ = 5 Н и F₂ = 7 Н. Чему равен модуль равнодействующей силы?</p>
+        <div class="input-group">
+            <label>Ответ:</label>
+            <input type="text" class="answer-input">
+            <span>Н</span>
+            <button class="btn-check" onclick="checkAnswer(this)">Проверить</button>
+            <button class="btn-show" onclick="toggleSolution(this)">Показать решение</button>
+        </div>
+        <div class="result"></div>
+        <div class="solution">
+            <p>Если силы направлены в одну сторону, их равнодействующая равна сумме модулей этих сил.</p>
+            <p>F = F₁ + F₂ = 5 + 7 = 12 Н.</p>
+        </div>
+    </div>
+
+    <!-- Задача 8 -->
+    <div class="task-card" data-answer="6">
+        <h3>Задача 8. Закон Гука</h3>
+        <span class="tag">Силы в природе</span>
+        <p class="task-text">Пружина жесткостью 200 Н/м растянута на 3 см. Чему равна сила упругости? (Ответ дайте в Ньютонах).</p>
+        <div class="input-group">
+            <label>Ответ:</label>
+            <input type="text" class="answer-input">
+            <span>Н</span>
+            <button class="btn-check" onclick="checkAnswer(this)">Проверить</button>
+            <button class="btn-show" onclick="toggleSolution(this)">Показать решение</button>
+        </div>
+        <div class="result"></div>
+        <div class="solution">
+            <p>По закону Гука: F = k · Δx.</p>
+            <p>Переведем удлинение в систему СИ: Δx = 3 см = 0,03 м.</p>
+            <p>F = 200 · 0,03 = 6 Н.</p>
+        </div>
+    </div>
+
+    <!-- Задача 9 -->
+    <div class="task-card" data-answer="40">
+        <h3>Задача 9. Импульс тела</h3>
+        <span class="tag">Импульс</span>
+        <p class="task-text">Тело массой 2 кг движется со скоростью 20 м/с. Чему равен импульс тела?</p>
+        <div class="input-group">
+            <label>Ответ:</label>
+            <input type="text" class="answer-input">
+            <span>кг·м/с</span>
+            <button class="btn-check" onclick="checkAnswer(this)">Проверить</button>
+            <button class="btn-show" onclick="toggleSolution(this)">Показать решение</button>
+        </div>
+        <div class="result"></div>
+        <div class="solution">
+            <p>Импульс тела вычисляется по формуле: p = m · v.</p>
+            <p>p = 2 кг · 20 м/с = 40 кг·м/с.</p>
+        </div>
+    </div>
+
+    <!-- Задача 10 -->
+    <div class="task-card" data-answer="4">
+        <h3>Задача 10. Равнодействующая сила (противоположные)</h3>
+        <span class="tag">Законы Ньютона</span>
+        <p class="task-text">На тело действуют две силы, направленные в противоположные стороны: F₁ = 10 Н вправо и F₂ = 6 Н влево. Чему равен модуль равнодействующей силы?</p>
+        <div class="input-group">
+            <label>Ответ:</label>
+            <input type="text" class="answer-input">
+            <span>Н</span>
+            <button class="btn-check" onclick="checkAnswer(this)">Проверить</button>
+            <button class="btn-show" onclick="toggleSolution(this)">Показать решение</button>
+        </div>
+        <div class="result"></div>
+        <div class="solution">
+            <p>Если силы направлены в противоположные стороны, модуль равнодействующей равен разности модулей этих сил.</p>
+            <p>F = |F₁ - F₂| = |10 - 6| = 4 Н. (Направлена в сторону большей силы).</p>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    let solvedCount = 0;
+    const totalTasks = 10;
+    const solvedTasks = new Set();
+
+    function checkAnswer(button) {
+        const card = button.closest('.task-card');
+        const input = card.querySelector('.answer-input');
+        const resultDiv = card.querySelector('.result');
+        const correctAnswer = parseFloat(card.getAttribute('data-answer'));
+        const userAnswerStr = input.value.trim().replace(',', '.'); // Меняем запятую на точку
+
+        if (userAnswerStr === '') {
+            resultDiv.textContent = 'Введите ответ!';
+            resultDiv.className = 'result incorrect';
+            return;
+        }
+
+        const userAnswer = parseFloat(userAnswerStr);
+
+        // Проверяем, решена ли уже задача, чтобы не начислять баллы дважды
+        const taskId = Array.from(document.querySelectorAll('.task-card')).indexOf(card);
+
+        if (Math.abs(userAnswer - correctAnswer) < 0.01) {
+            resultDiv.textContent = 'Верно! ✅';
+            resultDiv.className = 'result correct';
+            
+            if (!solvedTasks.has(taskId)) {
+                solvedTasks.add(taskId);
+                solvedCount++;
+                document.getElementById('score').textContent = solvedCount;
+            }
+        } else {
+            resultDiv.textContent = 'Неверно. Попробуйте еще раз. ❌';
+            resultDiv.className = 'result incorrect';
+            
+            // Если задача была решена верно, а потом стерли и ввели неверно, отнимаем балл
+            if (solvedTasks.has(taskId)) {
+                solvedTasks.delete(taskId);
+                solvedCount--;
+                document.getElementById('score').textContent = solvedCount;
+            }
+        }
+    }
+
+    function toggleSolution(button) {
+        const card = button.closest('.task-card');
+        const solutionDiv = card.querySelector('.solution');
+        if (solutionDiv.style.display === 'block') {
+            solutionDiv.style.display = 'none';
+            button.textContent = 'Показать решение';
+        } else {
+            solutionDiv.style.display = 'block';
+            button.textContent = 'Скрыть решение';
+        }
+    }
+</script>
+
+</body>
+</html>

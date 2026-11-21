@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Тренажёры по физике</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { min-height: 100vh; font-family: "Segoe UI", Roboto, Arial, sans-serif; color: #1f2937;
+               background: linear-gradient(135deg, #eef2ff, #f0fdfa); padding: 40px 20px; }
+        .wrap { max-width: 1000px; margin: 0 auto; }
+        .back { display: inline-block; margin-bottom: 24px; color: #4338ca; text-decoration: none; font-weight: 600; }
+        .back:hover { text-decoration: underline; }
+        h1 { font-size: clamp(28px, 4vw, 42px); color: #312e81; margin-bottom: 8px; text-align: center; }
+        .subtitle { text-align: center; color: #4b5563; margin-bottom: 40px; font-size: 17px; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 24px; }
+        .card { display: flex; flex-direction: column; background: #fff; border-radius: 18px; padding: 28px 24px;
+                text-decoration: none; color: inherit; box-shadow: 0 8px 22px rgba(30,41,59,.10);
+                border-top: 6px solid var(--c, #6366f1); transition: transform .25s, box-shadow .25s; }
+        .card:hover { transform: translateY(-6px); box-shadow: 0 16px 32px rgba(30,41,59,.18); }
+        .card .icon { font-size: 44px; margin-bottom: 12px; }
+        .card h2 { font-size: 22px; margin-bottom: 8px; color: #111827; }
+        .card p { color: #6b7280; font-size: 15px; line-height: 1.5; flex: 1; }
+        .card .go { margin-top: 18px; font-weight: 600; color: var(--c, #6366f1); }
+        .text { background: #fff; border-radius: 18px; padding: 28px; margin-top: 30px; line-height: 1.7;
+                box-shadow: 0 8px 22px rgba(30,41,59,.08); }
+        .text h3 { margin-bottom: 10px; color: #312e81; }
+        .text ul { padding-left: 22px; }
+    </style>
+</head>
+<body>
+<div class="wrap">
+    <a class="back" href="../index.html">← На главную</a>
+    <h1>🎯 Тренажёры</h1>
+    <p class="subtitle">Решай задачи и проверяй себя</p>
+    <div class="grid">
+        <a class="card" style="--c:#f59e0b" href="trenazher-kinematika.html">
+            <span class="icon">🚀</span>
+            <h2>Кинематика</h2>
+            <p>Скорость, путь, ускорение, равномерное и равноускоренное движение.</p>
+            <span class="go">Начать →</span>
+        </a>
+        <a class="card" style="--c:#ef4444" href="trenazher-dinamika.html">
+            <span class="icon">⚖️</span>
+            <h2>Динамика</h2>
+            <p>Законы Ньютона, силы тяжести, упругости и трения.</p>
+            <span class="go">Начать →</span>
+        </a>
+        <a class="card" style="--c:#8b5cf6" href="trenazher-mkt.html">
+            <span class="icon">🧪</span>
+            <h2>МКТ</h2>
+            <p>Молекулярно-кинетическая теория, газовые законы, температура.</p>
+            <span class="go">Начать →</span>
+        </a>
+    </div>
+</div>
+</body>
+</html>

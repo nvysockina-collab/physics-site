@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Для учеников</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { min-height: 100vh; font-family: "Segoe UI", Roboto, Arial, sans-serif; color: #1f2937;
+               background: linear-gradient(135deg, #eef2ff, #f0fdfa); padding: 40px 20px; }
+        .wrap { max-width: 1000px; margin: 0 auto; }
+        .back { display: inline-block; margin-bottom: 24px; color: #4338ca; text-decoration: none; font-weight: 600; }
+        .back:hover { text-decoration: underline; }
+        h1 { font-size: clamp(28px, 4vw, 42px); color: #312e81; margin-bottom: 8px; text-align: center; }
+        .subtitle { text-align: center; color: #4b5563; margin-bottom: 40px; font-size: 17px; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 24px; }
+        .card { display: flex; flex-direction: column; background: #fff; border-radius: 18px; padding: 28px 24px;
+                text-decoration: none; color: inherit; box-shadow: 0 8px 22px rgba(30,41,59,.10);
+                border-top: 6px solid var(--c, #6366f1); transition: transform .25s, box-shadow .25s; }
+        .card:hover { transform: translateY(-6px); box-shadow: 0 16px 32px rgba(30,41,59,.18); }
+        .card .icon { font-size: 44px; margin-bottom: 12px; }
+        .card h2 { font-size: 22px; margin-bottom: 8px; color: #111827; }
+        .card p { color: #6b7280; font-size: 15px; line-height: 1.5; flex: 1; }
+        .card .go { margin-top: 18px; font-weight: 600; color: var(--c, #6366f1); }
+        .text { background: #fff; border-radius: 18px; padding: 28px; margin-top: 30px; line-height: 1.7;
+                box-shadow: 0 8px 22px rgba(30,41,59,.08); }
+        .text h3 { margin-bottom: 10px; color: #312e81; }
+        .text ul { padding-left: 22px; }
+
+        /* Блоки-вопросы */
+        .ask { background: #fff; border-radius: 20px; padding: 28px 30px; margin-bottom: 28px;
+               border-left: 8px solid var(--c); box-shadow: 0 8px 22px rgba(30,41,59,.10); }
+        .ask-head { display: flex; gap: 18px; align-items: flex-start; }
+        .ask-icon { font-size: 46px; line-height: 1; }
+        .ask h2 { font-size: 26px; color: var(--c); margin-bottom: 6px; }
+        .ask-head p { color: #4b5563; line-height: 1.6; font-size: 17px; }
+        .btns { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 20px; }
+        .pill { display: inline-block; padding: 11px 20px; border-radius: 999px; text-decoration: none;
+                font-weight: 600; font-size: 16px; color: #fff; background: var(--c);
+                box-shadow: 0 4px 12px rgba(30,41,59,.15); transition: transform .2s, box-shadow .2s; }
+        .pill:hover { transform: translateY(-3px); box-shadow: 0 8px 18px rgba(30,41,59,.22); }
+        .pill.light { background: #f3f4f6; color: #374151; }
+        .topics { width: 100%; border-collapse: collapse; margin-top: 20px; font-size: 16px; }
+        .topics th { text-align: left; background: #eef2ff; color: #312e81; padding: 10px 12px; }
+        .topics td { padding: 10px 12px; border-bottom: 1px solid #e5e7eb; vertical-align: top; }
+        .topics a { color: #4338ca; font-weight: 600; text-decoration: none; }
+        .topics a:hover { text-decoration: underline; }
+        @media (max-width: 640px) {
+            .ask { padding: 22px 18px; }
+            .ask-head { flex-direction: column; gap: 8px; }
+            .topics, .topics tbody, .topics tr, .topics td { display: block; }
+            .topics th { display: none; }
+            .topics tr { border-bottom: 1px solid #e5e7eb; padding: 8px 0; }
+            .topics td { border: none; padding: 3px 0; }
+            .topics td:first-child { font-weight: 700; }
+        }
+    </style>
+</head>
+<body>
+<div class="wrap">
+    <a class="back" href="../index.html">← На главную</a>
+    <h1>🎒 Для учеников</h1>
+    <p class="subtitle">Что тебе сейчас нужно? Выбери свой вопрос</p>
+
+    <!-- Вопрос 1 -->
+    <section class="ask" style="--c:#6366f1">
+        <div class="ask-head">
+            <span class="ask-icon">🤔</span>
+            <div>
+                <h2>«Я не понял тему»</h2>
+                <p>Не страшно! Сначала прочитай сказку — она объяснит идею просто. Потом открой конспект — там формулы и подробности.</p>
+            </div>
+        </div>
+        <table class="topics">
+            <tr><th>Тема</th><th>Сначала сказка</th><th>Потом конспект</th></tr>
+            <tr>
+                <td>Строение вещества, МКТ</td>
+                <td><a href="../book/book.html#skazka-1">Сказка о строении вещества</a></td>
+                <td><a href="../materialy/index.html?file=mkt-teoriya.pdf">📄 МКТ</a></td>
+            </tr>
+            <tr>
+                <td>Силы, законы Ньютона</td>
+                <td><a href="../book/book.html#skazka-4">Сказка об Инерции</a>, <a href="../book/book.html#skazka-6">о физических силах</a></td>
+                <td><a href="../materialy/index.html?file=dinamika-teoriya.pdf">📄 Динамика</a></td>
+            </tr>
+            <tr>
+                <td>Равновесие, рычаг</td>
+                <td><a href="../book/book.html#skazka-12">Сказка о великом изобретателе</a></td>
+                <td><a href="../materialy/index.html?file=statika-teoriya.pdf">📄 Статика</a></td>
+            </tr>
+            <tr>
+                <td>Электрический ток</td>
+                <td>—</td>
+                <td><a href="../materialy/index.html?file=zakon-oma.pdf">📄 Закон Ома</a></td>
+            </tr>
+        </table>
+        <div class="btns">
+            <a class="pill" href="../materialy/index.html">📚 Все конспекты</a>
+            <a class="pill light" href="../book/book.html#soderzhanie">📖 Содержание книги</a>
+        </div>
+    </section>
+
+    <!-- Вопрос 2 -->
+    <section class="ask" style="--c:#f59e0b">
+        <div class="ask-head">
+            <span class="ask-icon">🎯</span>
+            <div>
+                <h2>«Хочу проверить себя»</h2>
+                <p>Реши задачи, введи ответ и сразу узнай, верно ли. Если ошибся — открой решение и разберись. Совет: в конце каждой сказки тоже есть вопрос «Проверь себя».</p>
+            </div>
+        </div>
+        <div class="btns">
+            <a class="pill" href="../trenazhery/trenazher-kinematika.html">🚀 Кинематика</a>
+            <a class="pill" href="../trenazhery/trenazher-dinamika.html">⚖️ Динамика</a>
+            <a class="pill" href="../trenazhery/trenazher-mkt.html">🧪 МКТ</a>
+            <a class="pill light" href="../trenazhery/index.html">Все тренажёры →</a>
+        </div>
+    </section>
+
+    <!-- Вопрос 3 -->
+    <section class="ask" style="--c:#ec4899">
+        <div class="ask-head">
+            <span class="ask-icon">📖</span>
+            <div>
+                <h2>«Хочу почитать сказки»</h2>
+                <p>13 волшебных историй, в которых законы физики оживают: царевна Инерция, царь Гравитон, царица Энергия и её семь дочерей. С чего начать:</p>
+            </div>
+        </div>
+        <div class="btns">
+            <a class="pill" href="../book/book.html#skazka-10">👑 Как Архимед посрамил царя Гравитона</a>
+            <a class="pill" href="../book/book.html#skazka-13">⚡ Царица Энергия и её дочери</a>
+            <a class="pill" href="../book/book.html#skazka-4">🏃 Инерция и Инертность</a>
+            <a class="pill light" href="../book/book.html">Открыть книгу →</a>
+        </div>
+    </section>
+</div>
+</body>
+</html>

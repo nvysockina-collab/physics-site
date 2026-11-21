@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Об авторе — Физика в сказках</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            min-height: 100vh;
+            font-family: "Segoe UI", Roboto, Arial, sans-serif;
+            color: #1f2937;
+            background: radial-gradient(circle at 15% 20%, #c7d2fe 0, transparent 40%),
+                        radial-gradient(circle at 85% 80%, #a5f3fc 0, transparent 40%),
+                        linear-gradient(135deg, #eef2ff, #f0fdfa);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+        }
+        .wrap { width: 100%; max-width: 760px; text-align: center; }
+        h1 {
+            font-size: clamp(32px, 5vw, 48px);
+            background: linear-gradient(90deg, #4338ca, #0891b2);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 28px;
+        }
+        .photo {
+            display: block;
+            width: 260px;
+            max-width: 80%;
+            height: auto;           /* фото целиком, без обрезки */
+            margin-left: auto;
+            margin-right: auto;
+            border-radius: 28px;    /* мягко скруглённые углы */
+            border: 8px solid #fff; /* белая рамка-паспарту */
+            box-shadow: 0 12px 30px rgba(30, 41, 59, .2);
+            margin-bottom: 28px;
+        }
+        .card {
+            background: rgba(255, 255, 255, .85);
+            border-radius: 20px;
+            padding: 28px 30px;
+            margin-bottom: 22px;
+            box-shadow: 0 10px 25px rgba(30, 41, 59, .1);
+            text-align: left;
+            font-size: 18px;
+            line-height: 1.65;
+        }
+        .card h2 { font-size: 22px; margin-bottom: 12px; color: #4338ca; }
+        .card p + p { margin-top: 12px; }
+        .note { font-size: 15px; color: #6b7280; }
+        .photo { margin-bottom: 14px; }
+        .author-name { font-size: 22px; font-weight: 700; color: #312e81; margin-bottom: 28px; }
+        .ai-note {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-top: 18px !important;
+            padding: 14px 18px;
+            background: #eef2ff;
+            border-left: 5px solid #6366f1;
+            border-radius: 12px;
+            font-size: 17px;
+            color: #374151;
+        }
+        .ai-icon { font-size: 30px; line-height: 1; }
+        .back {
+            display: inline-block;
+            margin-top: 12px;
+            padding: 14px 30px;
+            border-radius: 20px;
+            text-decoration: none;
+            color: #fff;
+            font-size: 18px;
+            font-weight: 600;
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            box-shadow: 0 10px 25px rgba(30, 41, 59, .15);
+            transition: transform .25s, box-shadow .25s;
+        }
+        .back:hover { transform: translateY(-4px); box-shadow: 0 18px 35px rgba(30, 41, 59, .25); }
+    </style>
+</head>
+<body>
+<div class="wrap">
+    <h1>Об авторе</h1>
+    <img class="photo" src="../foto/nadezhda.jpg" alt="Надежда — автор книги">
+    <p class="author-name">Автор: Высочкина Надежда Владимировна</p>
+
+    <div class="card">
+        <h2>👩‍🏫 Обо мне</h2>
+        <p>Меня зовут Надежда. Я преподаватель физики с более чем 30-летним стажем. Сейчас я работаю репетитором и помогаю детям понять, что физика — это не скучные формулы, а увлекательный мир.</p>
+    </div>
+
+    <div class="card">
+        <h2>📖 О книге «Физика в сказках»</h2>
+        <p>Эту книгу я написала для своего любимого внука Даниила. Я хотела, чтобы он полюбил физику так же, как люблю ее я. Надеюсь, она поможет и другим детям.</p>
+        <p class="ai-note"><span class="ai-icon">🤖</span><span>При создании этого сайта мне помогала нейросеть (ИИ) в роли технического ассистента.</span></p>
+    </div>
+
+    <a class="back" href="../index.html">← Вернуться на главную</a>
+</div>
+</body>
+</html>

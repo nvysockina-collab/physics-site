@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Подготовка к ОГЭ и ЕГЭ по физике</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { min-height: 100vh; font-family: "Segoe UI", Roboto, Arial, sans-serif; color: #1f2937;
+               background: radial-gradient(circle at 15% 20%, #c7d2fe 0, transparent 40%),
+                           radial-gradient(circle at 85% 80%, #a5f3fc 0, transparent 40%),
+                           linear-gradient(135deg, #eef2ff, #f0fdfa);
+               padding: 40px 20px; }
+        .wrap { max-width: 900px; margin: 0 auto; }
+        .back { display: inline-block; margin-bottom: 24px; color: #4338ca; text-decoration: none; font-weight: 600; }
+        .back:hover { text-decoration: underline; }
+        .logo { font-size: 60px; text-align: center; margin-bottom: 8px; }
+        h1 { font-size: clamp(28px, 4.5vw, 46px); text-align: center; margin-bottom: 10px;
+             background: linear-gradient(90deg, #4338ca, #0891b2); -webkit-background-clip: text;
+             background-clip: text; color: transparent; }
+        .subtitle { text-align: center; color: #4b5563; margin-bottom: 44px; font-size: 18px; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 28px; }
+        .big { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 12px;
+               padding: 44px 28px; border-radius: 24px; color: #fff; text-decoration: none;
+               box-shadow: 0 12px 28px rgba(30,41,59,.18); transition: transform .25s, box-shadow .25s; }
+        .big:hover { transform: translateY(-8px); box-shadow: 0 20px 40px rgba(30,41,59,.28); }
+        .big .icon { font-size: 64px; }
+        .big h2 { font-size: 28px; }
+        .big .grade { padding: 4px 14px; border-radius: 999px; background: rgba(255,255,255,.25); font-size: 14px; font-weight: 600; }
+        .big p { font-size: 15px; opacity: .95; line-height: 1.5; }
+        .big .go { margin-top: 8px; padding: 10px 22px; border-radius: 999px; background: #fff; font-weight: 700; }
+        .oge { background: linear-gradient(135deg, #10b981, #047857); }
+        .oge .go { color: #047857; }
+        .ege { background: linear-gradient(135deg, #6366f1, #7c3aed); }
+        .ege .go { color: #6d28d9; }
+        footer { margin-top: 48px; text-align: center; color: #6b7280; font-size: 14px; }
+    </style>
+</head>
+<body>
+<div class="wrap">
+    <a class="back" href="../index.html">← На главную</a>
+    <div class="logo">🎓</div>
+    <h1>Подготовка к ОГЭ и ЕГЭ</h1>
+    <p class="subtitle">Задания по разделам экзамена — выберите, к чему готовимся</p>
+
+    <div class="grid">
+        <a class="big oge" href="oge-index.html">
+            <span class="icon">📘</span>
+            <h2>Подготовка к ОГЭ</h2>
+            <span class="grade">8–9 класс</span>
+            <p>Механические, тепловые, электромагнитные и квантовые явления</p>
+            <span class="go">Перейти →</span>
+        </a>
+        <a class="big ege" href="ege-index.html">
+            <span class="icon">📕</span>
+            <h2>Подготовка к ЕГЭ</h2>
+            <span class="grade">10–11 класс</span>
+            <p>Механика, молекулярная физика, электродинамика, оптика, квантовая физика</p>
+            <span class="go">Перейти →</span>
+        </a>
+    </div>
+
+    <footer>© Образовательный сайт по физике</footer>
+</div>
+</body>
+</html>

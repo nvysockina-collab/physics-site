@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Для учителей</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { min-height: 100vh; font-family: "Segoe UI", Roboto, Arial, sans-serif; color: #1f2937;
+               background: linear-gradient(135deg, #eef2ff, #f0fdfa); padding: 40px 20px; }
+        .wrap { max-width: 1000px; margin: 0 auto; }
+        .back { display: inline-block; margin-bottom: 24px; color: #4338ca; text-decoration: none; font-weight: 600; }
+        .back:hover { text-decoration: underline; }
+        h1 { font-size: clamp(28px, 4vw, 42px); color: #312e81; margin-bottom: 8px; text-align: center; }
+        .subtitle { text-align: center; color: #4b5563; margin-bottom: 40px; font-size: 17px; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 24px; }
+        .card { display: flex; flex-direction: column; background: #fff; border-radius: 18px; padding: 28px 24px;
+                text-decoration: none; color: inherit; box-shadow: 0 8px 22px rgba(30,41,59,.10);
+                border-top: 6px solid var(--c, #6366f1); transition: transform .25s, box-shadow .25s; }
+        .card:hover { transform: translateY(-6px); box-shadow: 0 16px 32px rgba(30,41,59,.18); }
+        .card .icon { font-size: 44px; margin-bottom: 12px; }
+        .card h2 { font-size: 22px; margin-bottom: 8px; color: #111827; }
+        .card p { color: #6b7280; font-size: 15px; line-height: 1.5; flex: 1; }
+        .card .go { margin-top: 18px; font-weight: 600; color: var(--c, #6366f1); }
+        .text { background: #fff; border-radius: 18px; padding: 28px; margin-top: 30px; line-height: 1.7;
+                box-shadow: 0 8px 22px rgba(30,41,59,.08); }
+        .text h3 { margin-bottom: 10px; color: #312e81; }
+        .text ul { padding-left: 22px; }
+
+        /* Полезные ссылки — в стиле кнопок главной страницы */
+        .section-title { text-align: center; font-size: clamp(24px, 3vw, 32px); color: #312e81; margin: 56px 0 8px; }
+        .links-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 22px;
+                      max-width: 900px; margin: 0 auto; align-items: start; }
+        .link-note { margin-top: 8px; font-size: 13px; color: #6b7280; text-align: center; }
+        .ext-btn { display: flex; flex-direction: column; align-items: center; gap: 10px; text-align: center;
+                   padding: 28px 20px; border-radius: 20px; text-decoration: none; color: #fff;
+                   font-size: 19px; font-weight: 600; box-shadow: 0 10px 25px rgba(30, 41, 59, .15);
+                   transition: transform .25s, box-shadow .25s; }
+        .ext-btn:hover { transform: translateY(-6px); box-shadow: 0 18px 35px rgba(30, 41, 59, .25); }
+        .ext-btn .icon { font-size: 40px; }
+        .ext-btn small { font-size: 14px; font-weight: 400; opacity: .9; }
+        .reshu    { background: linear-gradient(135deg, #10b981, #047857); }
+        .classfiz { background: linear-gradient(135deg, #6366f1, #8b5cf6); }
+        .fipi     { background: linear-gradient(135deg, #0ea5e9, #0369a1); }
+
+        /* Сценарии уроков */
+        .lesson { background: #fff; border-radius: 20px; overflow: hidden; box-shadow: 0 10px 28px rgba(30,41,59,.12); }
+        .lesson-head { display: flex; gap: 18px; align-items: center; padding: 26px 30px; color: #fff;
+                       background: linear-gradient(135deg, #8b5cf6, #6366f1); }
+        .lesson-icon { font-size: 48px; line-height: 1; }
+        .lesson-head h3 { font-size: 24px; margin-bottom: 6px; }
+        .lesson-head p { font-size: 15px; opacity: .95; }
+        .lesson-head a { color: #fff; font-weight: 600; }
+        .steps { display: grid; gap: 18px; padding: 26px 30px 30px; }
+        .step { border-left: 6px solid var(--c); background: #f9fafb; border-radius: 0 14px 14px 0; padding: 16px 20px; line-height: 1.6; }
+        .step-time { display: inline-block; font-size: 13px; font-weight: 700; color: #fff; background: var(--c);
+                     padding: 3px 12px; border-radius: 999px; margin-bottom: 8px; }
+        .step h4 { font-size: 19px; color: #111827; margin-bottom: 6px; }
+        .step p { color: #374151; margin-bottom: 6px; }
+        .step ul { padding-left: 22px; color: #374151; }
+        .step li { margin: 4px 0; }
+        .step a { color: #4338ca; font-weight: 600; }
+        @media (max-width: 640px) {
+            .lesson-head, .steps { padding: 20px 18px; }
+            .lesson-head { flex-direction: column; align-items: flex-start; }
+        }
+    </style>
+</head>
+<body>
+<div class="wrap">
+    <a class="back" href="../index.html">← На главную</a>
+    <h1>👩‍🏫 Для учителей</h1>
+    <p class="subtitle">Материалы, которые можно использовать на уроках</p>
+    <div class="grid">
+        <a class="card" style="--c:#6366f1" href="../materialy/index.html">
+            <span class="icon">📚</span>
+            <h2>Конспекты</h2>
+            <p>Теория по МКТ, динамике, закону Ома и статике.</p>
+            <span class="go">Открыть →</span>
+        </a>
+        <a class="card" style="--c:#f59e0b" href="../trenazhery/index.html">
+            <span class="icon">🎯</span>
+            <h2>Тренажёры</h2>
+            <p>Интерактивные задания для закрепления и самопроверки.</p>
+            <span class="go">Открыть →</span>
+        </a>
+        <a class="card" style="--c:#ec4899" href="../book/book.html">
+            <span class="icon">📖</span>
+            <h2>«Физика в сказках»</h2>
+            <p>Сказки для мотивации и введения новых понятий.</p>
+            <span class="go">Открыть →</span>
+        </a>
+    </div>
+
+    <h2 class="section-title">🗂️ Сценарии уроков</h2>
+    <p class="subtitle">Готовые планы на основе материалов сайта — берите целиком или по частям</p>
+
+    <article class="lesson">
+        <header class="lesson-head">
+            <span class="lesson-icon">🧪</span>
+            <div>
+                <h3>Урок по теме «Основы МКТ» (10 класс)</h3>
+                <p>45 минут · Тип: изучение нового материала · Материалы: <a href="../materialy/index.html?file=mkt-teoriya.pdf">📄 конспект МКТ</a>, <a href="../book/book.html#skazka-1">📖 сказка</a>, <a href="../trenazhery/trenazher-mkt.html">🎯 тренажёр</a></p>
+            </div>
+        </header>
+
+        <div class="steps">
+            <div class="step" style="--c:#ec4899">
+                <div class="step-time">5 мин · Мотивация</div>
+                <h4>Загадка из сказки</h4>
+                <p>Задайте вопрос из <a href="../book/book.html#skazka-1">«Сказки о строении вещества»</a>: смешали 100 мл спирта и 100 мл воды — получилось 198 мл. Куда делись 2 мл? Ответ ученики найдут к концу урока.</p>
+            </div>
+
+            <div class="step" style="--c:#6366f1">
+                <div class="step-time">15 мин · Новый материал</div>
+                <h4>Что разобрать на уроке</h4>
+                <p>По <a href="../materialy/index.html?file=mkt-teoriya.pdf">конспекту «МКТ» (PDF)</a>:</p>
+                <ul>
+                    <li>три положения МКТ: вещество состоит из частиц; частицы непрерывно и хаотично движутся; частицы взаимодействуют;</li>
+                    <li>опытные доказательства: броуновское движение (Р. Броун, 1827 г.) и диффузия;</li>
+                    <li>силы взаимодействия молекул: притяжение и отталкивание, размер молекул ~10⁻¹⁰ м;</li>
+                    <li>количество вещества, постоянная Авогадро, молярная масса.</li>
+                </ul>
+            </div>
+
+            <div class="step" style="--c:#f59e0b">
+                <div class="step-time">7 мин · Демонстрация</div>
+                <h4>Опыт «Запах путешествует»</h4>
+                <p>Откройте флакон духов у доски. Ученики поднимают руку, когда почувствуют запах, — запах «идёт» по классу волной. Вопрос: молекулы летят со скоростью сотни м/с, почему же запах доходит за десятки секунд? (Молекулы постоянно сталкиваются с молекулами воздуха.)</p>
+                <p><b>Дополнение:</b> бросьте по кусочку сахара (или кристаллу марганцовки) в стакан с горячей и с холодной водой — в горячей растворение и диффузия идут заметно быстрее: скорость движения частиц растёт с температурой.</p>
+            </div>
+
+            <div class="step" style="--c:#0ea5e9">
+                <div class="step-time">10 мин · Опыт в парах</div>
+                <h4>Проверяем сами: чернила в воде</h4>
+                <p>Теперь ученики повторяют наблюдение своими руками: капните каплю чернил в стакан с холодной и горячей водой. В горячей воде диффузия произойдет быстрее — это наглядно покажет зависимость скорости молекул от температуры.</p>
+            </div>
+
+            <div class="step" style="--c:#10b981">
+                <div class="step-time">8 мин · Закрепление и ДЗ</div>
+                <h4>Проверка понимания</h4>
+                <p>Вернитесь к загадке про спирт и воду: теперь ученики объясняют её сами (молекулы занимают промежутки друг между другом). Домашнее задание — задачи 1, 5 и 7 из <a href="../trenazhery/trenazher-mkt.html">тренажёра по МКТ</a> (количество вещества, средняя кинетическая энергия, масса молекулы): ответ проверяется сразу.</p>
+            </div>
+        </div>
+    </article>
+
+    <h2 class="section-title">🔗 Полезные ссылки</h2>
+    <p class="subtitle">Проверенные внешние ресурсы — откроются в новой вкладке</p>
+    <div class="links-grid">
+        <div class="link-item">
+            <a class="ext-btn reshu" href="https://phys-ege.sdamgia.ru/" target="_blank" rel="noopener">
+                <span class="icon">✅</span>«Решу ЕГЭ» — физика<small>Задания и варианты для подготовки к экзамену</small>
+            </a>
+            <p class="link-note">Если сайт не работает, отключите блокировщик рекламы</p>
+        </div>
+        <div class="link-item">
+            <a class="ext-btn classfiz" href="http://class-fizika.ru/" target="_blank" rel="noopener">
+                <span class="icon">🧪</span>«Классная физика»<small>Тесты и модели для уроков</small>
+            </a>
+        </div>
+        <div class="link-item">
+            <a class="ext-btn fipi" href="https://fipi.ru/" target="_blank" rel="noopener">
+                <span class="icon">🏛️</span>ФИПИ<small>Демоверсии, кодификаторы и открытый банк заданий</small>
+            </a>
+        </div>
+    </div>
+</div>
+</body>
+</html>

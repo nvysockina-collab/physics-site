@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ЕГЭ · Механика — тренажёр</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { min-height: 100vh; font-family: "Segoe UI", Roboto, Arial, sans-serif; color: #1f2937;
+               background: radial-gradient(circle at 15% 20%, #c7d2fe 0, transparent 40%),
+                           radial-gradient(circle at 85% 80%, #a5f3fc 0, transparent 40%),
+                           linear-gradient(135deg, #eef2ff, #f0fdfa);
+               background-attachment: fixed; padding: 40px 20px; font-size: 19px; line-height: 1.65; }
+        .wrap { max-width: 820px; margin: 0 auto; }
+        .nav { display: flex; flex-wrap: wrap; gap: 18px; margin-bottom: 24px; }
+        .back { color: #4338ca; text-decoration: none; font-weight: 600; font-size: 17px; }
+        .back:hover { text-decoration: underline; }
+        h1 { font-size: clamp(28px, 4vw, 40px); color: #312e81; text-align: center; margin-bottom: 6px; }
+        .subtitle { text-align: center; color: #4b5563; margin-bottom: 24px; font-size: 18px; }
+
+        .info { background: #fff; border-radius: 18px; padding: 18px 24px; margin-bottom: 28px;
+                box-shadow: 0 8px 22px rgba(30,41,59,.08); border-left: 6px solid #ef4444; font-size: 17px; }
+        .score { margin-top: 6px; font-weight: 700; color: #312e81; }
+
+        /* Шпаргалка (сворачиваемая) */
+        .cheat { background: #fff; border-radius: 18px; margin-bottom: 20px; overflow: hidden;
+                 box-shadow: 0 8px 22px rgba(30,41,59,.10); border-top: 6px solid #6366f1; }
+        .cheat summary { cursor: pointer; padding: 18px 24px; font-size: 22px; font-weight: 700; color: #312e81;
+                         list-style: none; display: flex; align-items: center; flex-wrap: wrap; gap: 6px 12px; }
+        .cheat summary::-webkit-details-marker { display: none; }
+        .cheat summary::after { content: "▼"; margin-left: auto; font-size: 16px; color: #6366f1; transition: transform .25s; }
+        .cheat[open] summary::after { transform: rotate(180deg); }
+        .cheat summary:hover { background: #f5f7ff; }
+        .cheat .hint { font-size: 15px; font-weight: 400; color: #6b7280; }
+        .cheat[open] .hint { display: none; }
+        .formulas { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 14px;
+                    padding: 4px 24px 24px; }
+        .f { background: #eef2ff; border-radius: 14px; padding: 14px 16px; text-align: center; }
+        .f .name { display: block; font-size: 15px; font-weight: 600; color: #4b5563; margin-bottom: 6px; }
+        .f .eq { display: block; font-family: "Cambria Math", "Times New Roman", serif; font-size: 26px;
+                 font-style: italic; color: #1e1b4b; white-space: nowrap; }
+        .f .eq sub { font-size: 16px; }
+
+        .task { background: #fff; border-radius: 18px; padding: 26px 26px 22px; margin-bottom: 24px;
+                box-shadow: 0 8px 22px rgba(30,41,59,.10); border-top: 6px solid #ef4444; }
+        .task h2 { font-size: 22px; color: #111827; margin-bottom: 4px; }
+        .tag { display: inline-block; padding: 2px 12px; border-radius: 999px; font-size: 13px; font-weight: 600;
+               color: #fff; background: #ef4444; margin-bottom: 12px; }
+        .task p { margin-bottom: 14px; }
+        .graph { display: block; width: 100%; max-width: 420px; margin: 0 auto 16px; }
+
+        .answer { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
+        .answer label { font-weight: 600; }
+        .answer input { width: 140px; padding: 10px 14px; font: inherit; border: 2px solid #c7d2fe;
+                        border-radius: 12px; outline: none; }
+        .answer input:focus { border-color: #6366f1; }
+        .unit { font-weight: 700; color: #991b1b; background: #fee2e2; padding: 4px 12px; border-radius: 999px; }
+        button { font: inherit; font-size: 17px; font-weight: 600; border: 0; border-radius: 999px;
+                 padding: 10px 22px; cursor: pointer; transition: background .2s, transform .2s; }
+        button:hover { transform: translateY(-2px); }
+        .btn-check { background: #4338ca; color: #fff; }
+        .btn-check:hover { background: #312e81; }
+        .btn-show { background: #eef2ff; color: #4338ca; }
+        .btn-show:hover { background: #e0e7ff; }
+
+        .result { margin-top: 12px; font-weight: 700; font-size: 17px; min-height: 1em; }
+        .ok  { color: #059669; }
+        .bad { color: #dc2626; }
+        .solution { display: none; margin-top: 14px; padding: 14px 18px; background: #fefce8;
+                    border-left: 4px solid #facc15; border-radius: 10px; font-size: 17px; }
+        .solution.open { display: block; }
+        .solution p { margin-bottom: 4px; }
+
+        .finish { text-align: center; margin-top: 36px; }
+        .finish a { display: inline-block; padding: 14px 30px; border-radius: 999px; color: #fff; font-weight: 700;
+                    text-decoration: none; background: linear-gradient(135deg, #6366f1, #4338ca);
+                    box-shadow: 0 10px 25px rgba(30,41,59,.18); transition: transform .25s, box-shadow .25s; }
+        .finish a:hover { transform: translateY(-4px); box-shadow: 0 16px 32px rgba(30,41,59,.25); }
+        footer { margin-top: 40px; text-align: center; color: #6b7280; font-size: 14px; }
+    </style>
+</head>
+<body>
+<div class="wrap">
+    <div class="nav">
+        <a class="back" href="ege-index.html">← К темам ЕГЭ</a>
+        <a class="back" href="../index.html">⌂ На главную</a>
+    </div>
+
+    <h1>🚀 Механика</h1>
+    <p class="subtitle">Тренажёр ЕГЭ · 10–11 класс · задания с кратким ответом</p>
+
+    <details class="cheat">
+        <summary>📒 Шпаргалка по механике <span class="hint">нажмите, чтобы открыть</span></summary>
+        <div class="formulas">
+            <div class="f"><span class="name">Равноускоренное движение</span><span class="eq">a = (v − v<sub>0</sub>) / t</span></div>
+            <div class="f"><span class="name">Закон Гука</span><span class="eq">F<sub>упр</sub> = k · Δx</span></div>
+            <div class="f"><span class="name">Второй закон Ньютона</span><span class="eq">F = m · a</span></div>
+            <div class="f"><span class="name">Импульс тела</span><span class="eq">p = m · v</span></div>
+            <div class="f"><span class="name">Длина волны</span><span class="eq">λ = v / ν</span></div>
+            <div class="f"><span class="name">Сила Архимеда</span><span class="eq">F<sub>арх</sub> = ρ<sub>ж</sub> · g · V</span></div>
+        </div>
+    </details>
+
+    <div class="info">
+        Впишите ответ <b>числом</b> в указанных единицах и нажмите «Проверить».
+        Десятичную дробь можно писать через запятую или точку. Ускорение свободного падения g = 10 м/с².
+        <div class="score">Решено: <span id="score">0</span> из 5</div>
+    </div>
+
+    <!-- Задача 1 -->
+    <div class="task" data-answer="3">
+        <h2>Задача 1</h2>
+        <span class="tag">График скорости</span>
+        <p>На графике показана зависимость скорости тела от времени. За первые 3 с скорость тела
+           равномерно возросла с 4 м/с до 13 м/с, затем с 3 до 8 с тело двигалось с постоянной скоростью.
+           Определите модуль ускорения тела на участке от 0 до 3 с. <b>Ответ дайте в метрах на секунду в квадрате (м/с²).</b></p>
+        <svg class="graph" viewBox="0 0 400 240" role="img" aria-label="График v(t): от 4 до 13 м/с за 3 с, затем 13 м/с до 8 с">
+            <g stroke="#e5e7eb" stroke-width="1">
+                <line x1="160" y1="20" x2="160" y2="200"/>
+                <line x1="40" y1="44" x2="360" y2="44"/>
+                <line x1="40" y1="152" x2="160" y2="152"/>
+            </g>
+            <g stroke="#374151" stroke-width="2" fill="none">
+                <line x1="40" y1="200" x2="380" y2="200"/>
+                <line x1="40" y1="200" x2="40" y2="10"/>
+                <polyline points="374,195 380,200 374,205"/>
+                <polyline points="35,16 40,10 45,16"/>
+            </g>
+            <polyline points="40,152 160,44 360,44" fill="none" stroke="#ef4444" stroke-width="4" stroke-linejoin="round"/>
+            <g font-size="14" fill="#374151" font-family="Segoe UI, Arial, sans-serif">
+                <text x="18" y="157">4</text>
+                <text x="12" y="49">13</text>
+                <text x="36" y="218">0</text>
+                <text x="156" y="218">3</text>
+                <text x="356" y="218">8</text>
+                <text x="370" y="225">t, с</text>
+                <text x="48" y="18">v, м/с</text>
+            </g>
+        </svg>
+        <div class="answer">
+            <label>Ответ:</label><input type="text" inputmode="decimal" autocomplete="off"><span class="unit">м/с²</span>
+            <button type="button" class="btn-check">Проверить</button>
+            <button type="button" class="btn-show">Решение</button>
+        </div>
+        <div class="result"></div>
+        <div class="solution">
+            <p>a = (v − v₀) / t = (13 − 4) / 3 = <b>3 м/с²</b></p>
+        </div>
+    </div>
+
+    <!-- Задача 2 -->
+    <div class="task" data-answer="0.6">
+        <h2>Задача 2</h2>
+        <span class="tag">Закон Гука</span>
+        <p>К пружине жёсткостью 150 Н/м подвесили груз. В состоянии равновесия пружина растянулась на 4 см.
+           Определите массу груза. <b>Ответ дайте в килограммах (кг).</b></p>
+        <div class="answer">
+            <label>Ответ:</label><input type="text" inputmode="decimal" autocomplete="off"><span class="unit">кг</span>
+            <button type="button" class="btn-check">Проверить</button>
+            <button type="button" class="btn-show">Решение</button>
+        </div>
+        <div class="result"></div>
+        <div class="solution">
+            <p>В равновесии сила упругости равна силе тяжести: k·x = m·g.</p>
+            <p>x = 4 см = 0,04 м; m = k·x / g = 150 · 0,04 / 10 = <b>0,6 кг</b></p>
+        </div>
+    </div>
+
+    <!-- Задача 3 -->
+    <div class="task" data-answer="18">
+        <h2>Задача 3</h2>
+        <span class="tag">Импульс и второй закон Ньютона</span>
+        <p>Тело массой 2 кг движется прямолинейно, его импульс равен 6 кг·м/с. На тело в течение 3 с
+           действует постоянная сила 4 Н, направленная по направлению движения.
+           Чему станет равен импульс тела? <b>Ответ дайте в килограмм-метрах в секунду (кг·м/с).</b></p>
+        <div class="answer">
+            <label>Ответ:</label><input type="text" inputmode="decimal" autocomplete="off"><span class="unit">кг·м/с</span>
+            <button type="button" class="btn-check">Проверить</button>
+            <button type="button" class="btn-show">Решение</button>
+        </div>
+        <div class="result"></div>
+        <div class="solution">
+            <p>Изменение импульса равно импульсу силы: Δp = F·t = 4 · 3 = 12 кг·м/с.</p>
+            <p>p = p₀ + Δp = 6 + 12 = <b>18 кг·м/с</b></p>
+        </div>
+    </div>
+
+    <!-- Задача 4 -->
+    <div class="task" data-answer="2.5">
+        <h2>Задача 4</h2>
+        <span class="tag">Механические волны</span>
+        <p>Скорость звука в морской воде 1500 м/с. Определите длину звуковой волны,
+           если её частота 600 Гц. <b>Ответ дайте в метрах (м).</b></p>
+        <div class="answer">
+            <label>Ответ:</label><input type="text" inputmode="decimal" autocomplete="off"><span class="unit">м</span>
+            <button type="button" class="btn-check">Проверить</button>
+            <button type="button" class="btn-show">Решение</button>
+        </div>
+        <div class="result"></div>
+        <div class="solution">
+            <p>λ = v / ν = 1500 / 600 = <b>2,5 м</b></p>
+        </div>
+    </div>
+
+    <!-- Задача 5 -->
+    <div class="task" data-answer="1.25">
+        <h2>Задача 5</h2>
+        <span class="tag">Сила Архимеда</span>
+        <p>Медный кубик с ребром 5 см полностью погружён в воду. Определите архимедову силу,
+           действующую на кубик. Плотность воды 1000 кг/м³. <b>Ответ дайте в ньютонах (Н).</b></p>
+        <div class="answer">
+            <label>Ответ:</label><input type="text" inputmode="decimal" autocomplete="off"><span class="unit">Н</span>
+            <button type="button" class="btn-check">Проверить</button>
+            <button type="button" class="btn-show">Решение</button>
+        </div>
+        <div class="result"></div>
+        <div class="solution">
+            <p>Объём кубика: V = a³ = (0,05 м)³ = 0,000125 м³.</p>
+            <p>F<sub>А</sub> = ρ<sub>воды</sub>·g·V = 1000 · 10 · 0,000125 = <b>1,25 Н</b></p>
+            <p>Материал кубика (медь) на ответ не влияет — важен только объём погружённой части.</p>
+        </div>
+    </div>
+
+    <div class="finish">
+        <a href="ege-index.html">← Вернуться к выбору тем</a>
+    </div>
+
+    <footer>© Образовательный сайт по физике</footer>
+</div>
+
+<script>
+    (function () {
+        var solved = 0;
+        var scoreEl = document.getElementById('score');
+
+        // Превращает ввод ученика в число: убирает пробелы, запятую меняет на точку.
+        // Если введено не число — возвращает null.
+        function toNumber(text) {
+            var s = text.replace(/\s+/g, '').replace(',', '.');
+            if (s === '' || !/^[-+]?\d*\.?\d+$/.test(s)) return null;
+            return parseFloat(s);
+        }
+
+        document.querySelectorAll('.task').forEach(function (task) {
+            var correct = parseFloat(task.getAttribute('data-answer'));
+            var input = task.querySelector('input');
+            var result = task.querySelector('.result');
+            var solution = task.querySelector('.solution');
+            var done = false;
+
+            function check() {
+                var value = toNumber(input.value);
+                if (value === null) {
+                    result.textContent = 'Введите ответ числом.';
+                    result.className = 'result bad';
+                    return;
+                }
+                if (Math.abs(value - correct) < 1e-9) {
+                    result.textContent = '✅ Верно!';
+                    result.className = 'result ok';
+                    if (!done) { done = true; solved++; scoreEl.textContent = solved; }
+                } else {
+                    result.textContent = '❌ Неверно. Попробуйте ещё раз или посмотрите решение.';
+                    result.className = 'result bad';
+                }
+            }
+
+            task.querySelector('.btn-check').addEventListener('click', check);
+            input.addEventListener('keydown', function (e) { if (e.key === 'Enter') check(); });
+            task.querySelector('.btn-show').addEventListener('click', function () {
+                solution.classList.toggle('open');
+            });
+        });
+    })();
+</script>
+</body>
+</html>

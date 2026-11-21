@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Подготовка к ОГЭ по физике</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { min-height: 100vh; font-family: "Segoe UI", Roboto, Arial, sans-serif; color: #1f2937;
+               background: linear-gradient(135deg, #eef2ff, #f0fdfa); padding: 40px 20px; }
+        .wrap { max-width: 1000px; margin: 0 auto; }
+        .nav { display: flex; flex-wrap: wrap; gap: 18px; margin-bottom: 24px; }
+        .back { color: #4338ca; text-decoration: none; font-weight: 600; }
+        .back:hover { text-decoration: underline; }
+        h1 { font-size: clamp(28px, 4vw, 42px); color: #312e81; margin-bottom: 8px; text-align: center; }
+        .subtitle { text-align: center; color: #4b5563; margin-bottom: 40px; font-size: 17px; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 24px; }
+        .card { position: relative; display: flex; flex-direction: column; background: #fff; border-radius: 18px;
+                padding: 28px 24px; text-decoration: none; color: inherit; box-shadow: 0 8px 22px rgba(30,41,59,.10);
+                border-top: 6px solid var(--c, #6366f1); transition: transform .25s, box-shadow .25s; }
+        .card:hover { transform: translateY(-6px); box-shadow: 0 16px 32px rgba(30,41,59,.18); }
+        .card .icon { font-size: 44px; margin-bottom: 12px; }
+        .card h2 { font-size: 22px; margin-bottom: 8px; color: #111827; }
+        .card p { color: #6b7280; font-size: 15px; line-height: 1.5; flex: 1; }
+        .card .go { margin-top: 18px; font-weight: 600; color: var(--c, #6366f1); }
+        .grade { display: inline-block; align-self: flex-start; margin-bottom: 10px; padding: 3px 12px; border-radius: 999px;
+                 font-size: 13px; font-weight: 600; color: #fff; background: var(--c, #6366f1); }
+        .soon { position: absolute; top: 14px; right: 14px; padding: 3px 10px; border-radius: 999px;
+                font-size: 12px; font-weight: 600; color: #92400e; background: #fef3c7; }
+        footer { margin-top: 48px; text-align: center; color: #6b7280; font-size: 14px; }
+    </style>
+</head>
+<body>
+<div class="wrap">
+    <div class="nav">
+        <a class="back" href="index.html">← К выбору экзамена</a>
+        <a class="back" href="../index.html">⌂ На главную</a>
+    </div>
+    <h1>📘 Подготовка к ОГЭ</h1>
+    <p class="subtitle">Задания по основным блокам экзамена · 8–9 класс</p>
+    <div class="grid">
+        <a class="card" style="--c:#ef4444" href="#">
+            <span class="soon">Скоро</span>
+            <span class="icon">🚀</span>
+            <span class="grade">9 класс</span>
+            <h2>Механические явления</h2>
+            <p>Движение, силы, законы Ньютона, импульс, энергия, давление, механические колебания и волны.</p>
+            <span class="go">К заданиям →</span>
+        </a>
+        <a class="card" style="--c:#f59e0b" href="oge-teplo.html">
+            <span class="icon">🔥</span>
+            <span class="grade">8–9 класс</span>
+            <h2>Тепловые явления</h2>
+            <p>Внутренняя энергия, теплопередача, количество теплоты, плавление, кипение, тепловые двигатели.</p>
+            <span class="go">К заданиям →</span>
+        </a>
+        <a class="card" style="--c:#0ea5e9" href="#">
+            <span class="soon">Скоро</span>
+            <span class="icon">⚡</span>
+            <span class="grade">8 класс</span>
+            <h2>Электромагнитные явления</h2>
+            <p>Электрический ток, закон Ома, работа и мощность тока, магнитное поле, свет и линзы.</p>
+            <span class="go">К заданиям →</span>
+        </a>
+        <a class="card" style="--c:#8b5cf6" href="#">
+            <span class="soon">Скоро</span>
+            <span class="icon">⚛️</span>
+            <span class="grade">9 класс</span>
+            <h2>Квантовые явления</h2>
+            <p>Строение атома и ядра, радиоактивность, ядерные реакции.</p>
+            <span class="go">К заданиям →</span>
+        </a>
+    </div>
+    <footer>© Образовательный сайт по физике</footer>
+</div>
+</body>
+</html>

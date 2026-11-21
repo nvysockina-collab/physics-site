@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Для родителей</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { min-height: 100vh; font-family: "Segoe UI", Roboto, Arial, sans-serif; color: #1f2937;
+               background: linear-gradient(135deg, #eef2ff, #f0fdfa); padding: 40px 20px; }
+        .wrap { max-width: 1000px; margin: 0 auto; }
+        .back { display: inline-block; margin-bottom: 24px; color: #4338ca; text-decoration: none; font-weight: 600; }
+        .back:hover { text-decoration: underline; }
+        h1 { font-size: clamp(28px, 4vw, 42px); color: #312e81; margin-bottom: 8px; text-align: center; }
+        .subtitle { text-align: center; color: #4b5563; margin-bottom: 40px; font-size: 17px; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 28px; }
+        .grid .card { padding: 36px 32px; }
+        .grid .card .icon { font-size: 52px; }
+        .grid .card h2 { font-size: 24px; }
+        .grid .card p { font-size: 16px; }
+        .card { display: flex; flex-direction: column; background: #fff; border-radius: 18px; padding: 28px 24px;
+                text-decoration: none; color: inherit; box-shadow: 0 8px 22px rgba(30,41,59,.10);
+                border-top: 6px solid var(--c, #6366f1); transition: transform .25s, box-shadow .25s; }
+        .card:hover { transform: translateY(-6px); box-shadow: 0 16px 32px rgba(30,41,59,.18); }
+        .card .icon { font-size: 44px; margin-bottom: 12px; }
+        .card h2 { font-size: 22px; margin-bottom: 8px; color: #111827; }
+        .card p { color: #6b7280; font-size: 15px; line-height: 1.5; flex: 1; }
+        .card .go { margin-top: 18px; font-weight: 600; color: var(--c, #6366f1); }
+        .text { background: #fff; border-radius: 18px; padding: 28px; margin-top: 30px; line-height: 1.7;
+                box-shadow: 0 8px 22px rgba(30,41,59,.08); }
+        .text h3 { margin-bottom: 10px; color: #312e81; }
+        .text ul { padding-left: 22px; }
+
+        .section-title { text-align: center; font-size: clamp(24px, 3vw, 32px); color: #312e81; margin: 56px 0 8px; }
+
+        /* Что должен знать ребёнок */
+        .topics-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 22px; }
+        .topic { background: #fff; border-radius: 18px; overflow: hidden; box-shadow: 0 8px 22px rgba(30,41,59,.10);
+                 display: flex; flex-direction: column; }
+        .topic-head { background: var(--c); color: #fff; padding: 18px 20px; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+        .topic-head span { font-size: 32px; line-height: 1; }
+        .topic-head h3 { font-size: 21px; }
+        .topic-head em { font-style: normal; font-size: 13px; background: rgba(255,255,255,.25); padding: 2px 10px; border-radius: 999px; margin-left: auto; }
+        .topic ul { padding: 16px 20px 0 38px; color: #374151; line-height: 1.55; font-size: 15px; flex: 1; }
+        .topic li { margin-bottom: 4px; }
+        .topic-links { padding: 12px 20px 18px; font-size: 14px; color: #6b7280; }
+        .topic-links a { color: var(--c); font-weight: 600; }
+
+        /* Алгоритм помощи */
+        .algo { list-style: none; display: grid; gap: 18px; }
+        .algo li { display: flex; gap: 20px; align-items: flex-start; background: #fff; border-radius: 18px; padding: 22px 26px;
+                   border-left: 8px solid var(--c); box-shadow: 0 8px 22px rgba(30,41,59,.10); }
+        .algo-num { flex: none; width: 52px; height: 52px; border-radius: 50%; background: var(--c); color: #fff;
+                    font-size: 26px; font-weight: 700; display: flex; align-items: center; justify-content: center; }
+        .algo h3 { font-size: 20px; color: #111827; margin-bottom: 6px; }
+        .algo p { color: #4b5563; line-height: 1.6; }
+        .algo a { color: var(--c); font-weight: 600; }
+    </style>
+</head>
+<body>
+<div class="wrap">
+    <a class="back" href="../index.html">← На главную</a>
+    <h1>👨‍👩‍👧 Для родителей</h1>
+    <p class="subtitle">Как помочь ребёнку полюбить физику</p>
+    <div class="grid">
+        <a class="card" style="--c:#ec4899" href="../book/book.html">
+            <span class="icon">📖</span>
+            <h2>Почитать вместе</h2>
+            <p>Книга «Физика в сказках» — отличный повод поговорить о науке.</p>
+            <span class="go">Читать →</span>
+        </a>
+        <a class="card" style="--c:#f59e0b" href="../trenazhery/index.html">
+            <span class="icon">🎯</span>
+            <h2>Проверь знания вместе</h2>
+            <p>Пройдите тренажер вместе с ребёнком — это поможет понять, какие темы он уже освоил, а над чем стоит поработать вместе.</p>
+            <span class="go">Начать проверку →</span>
+        </a>
+    </div>
+
+    <h2 class="section-title">🎓 Что должен знать ребёнок (7–10 классы)</h2>
+    <p class="subtitle">Ключевые темы школьной физики и где о них почитать на сайте</p>
+    <div class="topics-grid">
+        <div class="topic" style="--c:#6366f1">
+            <div class="topic-head"><span>🚀</span><h3>Механика</h3><em>7–9 класс</em></div>
+            <ul>
+                <li>движение, скорость, путь и время</li>
+                <li>инерция, масса и плотность</li>
+                <li>силы: тяжести, упругости, трения; вес</li>
+                <li>работа, мощность, простые механизмы, энергия</li>
+            </ul>
+            <p class="topic-links">Сказки: <a href="../book/book.html#skazka-2">о движении</a>, <a href="../book/book.html#skazka-6">о силах</a>, <a href="../book/book.html#skazka-13">об Энергии</a></p>
+        </div>
+        <div class="topic" style="--c:#0ea5e9">
+            <div class="topic-head"><span>🌊</span><h3>Давление</h3><em>7 класс</em></div>
+            <ul>
+                <li>давление твёрдых тел: p = F / S</li>
+                <li>закон Паскаля, давление в жидкости и газе</li>
+                <li>сообщающиеся сосуды</li>
+                <li>сила Архимеда и плавание тел</li>
+            </ul>
+            <p class="topic-links">Сказки: <a href="../book/book.html#skazka-8">о давлении</a>, <a href="../book/book.html#skazka-9">о сосудах</a>, <a href="../book/book.html#skazka-10">об Архимеде</a></p>
+        </div>
+        <div class="topic" style="--c:#f59e0b">
+            <div class="topic-head"><span>🔥</span><h3>Тепловые явления</h3><em>8 и 10 класс</em></div>
+            <ul>
+                <li>строение вещества: атомы и молекулы</li>
+                <li>три состояния вещества, плавление, кипение</li>
+                <li>температура и движение молекул, диффузия</li>
+                <li>10 класс: основы МКТ и газовые законы</li>
+            </ul>
+            <p class="topic-links">Сказка <a href="../book/book.html#skazka-1">о строении вещества</a>, <a href="../materialy/index.html?file=mkt-teoriya.pdf">конспект МКТ</a></p>
+        </div>
+        <div class="topic" style="--c:#10b981">
+            <div class="topic-head"><span>💡</span><h3>Электричество</h3><em>8 класс</em></div>
+            <ul>
+                <li>электрический ток и его действия</li>
+                <li>сила тока, напряжение, сопротивление</li>
+                <li>закон Ома для участка цепи</li>
+                <li>последовательное и параллельное соединение</li>
+            </ul>
+            <p class="topic-links"><a href="../materialy/index.html?file=zakon-oma.pdf">Конспект «Закон Ома»</a></p>
+        </div>
+    </div>
+
+    <h2 class="section-title">🧭 Алгоритм помощи</h2>
+    <p class="subtitle">Ребёнок «не понимает физику»? Три спокойных шага по любой теме</p>
+    <ol class="algo">
+        <li style="--c:#ec4899">
+            <span class="algo-num">1</span>
+            <div>
+                <h3>Прочитать сказку по теме</h3>
+                <p>Найдите сказку в <a href="../book/book.html#soderzhanie">содержании книги</a> и прочитайте её вслух вместе. Попросите ребёнка своими словами пересказать, о каком законе эта сказка (во многих сказках главная мысль выделена цветной рамкой).</p>
+            </div>
+        </li>
+        <li style="--c:#6366f1">
+            <span class="algo-num">2</span>
+            <div>
+                <h3>Разобрать пример из конспекта</h3>
+                <p>Откройте <a href="../materialy/index.html">конспект</a> по той же теме и разберите один пример. Не нужно знать физику самому — попросите ребёнка объяснить вам, как будто вы ученик.</p>
+            </div>
+        </li>
+        <li style="--c:#f59e0b">
+            <span class="algo-num">3</span>
+            <div>
+                <h3>Пройти тренажёр вместе</h3>
+                <p>Решите 2–3 задачи в <a href="../trenazhery/index.html">тренажёре</a>. Ошибка — не повод для упрёка: откройте решение и разберитесь вместе. Начните с вопроса «Проверь себя» в конце сказки — он самый простой.</p>
+            </div>
+        </li>
+    </ol>
+
+    <div class="text">
+        <h3>Советы</h3>
+        <ul>
+            <li>Обсуждайте физику в быту: почему не тонет корабль, зачем нужен рычаг, отчего скользко зимой.</li>
+            <li>Читайте по одной сказке и просите ребёнка пересказать главную мысль.</li>
+            <li>Хвалите за попытку, а не только за правильный ответ в тренажёре.</li>
+        </ul>
+    </div>
+</div>
+</body>
+</html>
