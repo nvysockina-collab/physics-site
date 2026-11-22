@@ -3,104 +3,72 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Об авторе — Физика в сказках</title>
+    <title>Об авторе — Надежда Высочкина</title>
     <style>
-        * { box-sizing: border-box; margin: 0; padding: 0; }
         body {
-            min-height: 100vh;
             font-family: "Segoe UI", Roboto, Arial, sans-serif;
+            background: linear-gradient(135deg, #eef2ff, #f0fdfa);
             color: #1f2937;
-            background: radial-gradient(circle at 15% 20%, #c7d2fe 0, transparent 40%),
-                        radial-gradient(circle at 85% 80%, #a5f3fc 0, transparent 40%),
-                        linear-gradient(135deg, #eef2ff, #f0fdfa);
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            line-height: 1.6;
             padding: 40px 20px;
-        }
-        .wrap { width: 100%; max-width: 760px; text-align: center; }
-        h1 {
-            font-size: clamp(32px, 5vw, 48px);
-            background: linear-gradient(90deg, #4338ca, #0891b2);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            margin-bottom: 28px;
-        }
-        .photo {
-            display: block;
-            width: 260px;
-            max-width: 80%;
-            height: auto;           /* фото целиком, без обрезки */
-            margin-left: auto;
-            margin-right: auto;
-            border-radius: 28px;    /* мягко скруглённые углы */
-            border: 8px solid #fff; /* белая рамка-паспарту */
-            box-shadow: 0 12px 30px rgba(30, 41, 59, .2);
-            margin-bottom: 28px;
+            max-width: 800px;
+            margin: 0 auto;
         }
         .card {
-            background: rgba(255, 255, 255, .85);
+            background: #fff;
+            padding: 40px;
             border-radius: 20px;
-            padding: 28px 30px;
-            margin-bottom: 22px;
-            box-shadow: 0 10px 25px rgba(30, 41, 59, .1);
-            text-align: left;
-            font-size: 18px;
-            line-height: 1.65;
+            box-shadow: 0 10px 30px rgba(30, 41, 59, .1);
         }
-        .card h2 { font-size: 22px; margin-bottom: 12px; color: #4338ca; }
-        .card p + p { margin-top: 12px; }
-        .note { font-size: 15px; color: #6b7280; }
-        .photo { margin-bottom: 14px; }
-        .author-name { font-size: 22px; font-weight: 700; color: #312e81; margin-bottom: 28px; }
-        .ai-note {
-            display: flex;
-            align-items: center;
-            gap: 14px;
-            margin-top: 18px !important;
-            padding: 14px 18px;
-            background: #eef2ff;
-            border-left: 5px solid #6366f1;
-            border-radius: 12px;
-            font-size: 17px;
-            color: #374151;
-        }
-        .ai-icon { font-size: 30px; line-height: 1; }
-        .back {
-            display: inline-block;
-            margin-top: 12px;
-            padding: 14px 30px;
-            border-radius: 20px;
-            text-decoration: none;
-            color: #fff;
-            font-size: 18px;
-            font-weight: 600;
-            background: linear-gradient(135deg, #6366f1, #8b5cf6);
-            box-shadow: 0 10px 25px rgba(30, 41, 59, .15);
-            transition: transform .25s, box-shadow .25s;
-        }
-        .back:hover { transform: translateY(-4px); box-shadow: 0 18px 35px rgba(30, 41, 59, .25); }
+        h1 { color: #312e81; margin-bottom: 10px; }
+        h2 { color: #4338ca; margin-top: 30px; margin-bottom: 15px; border-bottom: 2px solid #e5e7eb; padding-bottom: 5px; }
+        p { margin-bottom: 15px; }
+        .quote { font-style: italic; color: #4b5563; background: #f3f4f6; padding: 15px; border-left: 4px solid #6366f1; border-radius: 4px; margin: 20px 0; }
+        .back { display: inline-block; margin-top: 30px; color: #4338ca; text-decoration: none; font-weight: bold; }
+        .back:hover { text-decoration: underline; }
+        ul { margin-left: 20px; margin-bottom: 20px; }
+        li { margin-bottom: 8px; }
     </style>
 </head>
 <body>
-<div class="wrap">
-    <h1>Об авторе</h1>
-    <img class="photo" src="../foto/nadezhda.jpg" alt="Надежда — автор книги">
-    <p class="author-name">Автор: Высочкина Надежда Владимировна</p>
-
     <div class="card">
-        <h2>👩‍🏫 Обо мне</h2>
-        <p>Меня зовут Надежда. Я преподаватель физики с более чем 30-летним стажем. Сейчас я работаю репетитором и помогаю детям понять, что физика — это не скучные формулы, а увлекательный мир.</p>
-    </div>
+        <h1>Высочкина Надежда Владимировна</h1>
+        <p style="font-size: 18px; color: #4b5563;">Репетитор по физике. Учитель физики → Создатель IT-продуктов с помощью ИИ.</p>
+        
+        <h2>🌌 Обо мне</h2>
+        <p>Я — учитель физики с более чем 30-летним стажем, и сейчас я открываю для себя совершенно новый мир — разработку с помощью искусственного интеллекта.</p>
+        <p>Мой путь необычный: от формул и уравнений — к коду и нейросетям. Я убеждена, что любознательность и умение объяснять сложное простым языком — это не только педагогические навыки, но и суперсила в IT.</p>
+        
+        <div class="quote">
+            «Физика учит видеть законы, лежащие в основе всего. ИИ учит создавать новое из этих законов.»
+        </div>
 
-    <div class="card">
-        <h2>📖 О книге «Физика в сказках»</h2>
-        <p>Эту книгу я написала для своего любимого внука Даниила. Я хотела, чтобы он полюбил физику так же, как люблю ее я. Надеюсь, она поможет и другим детям.</p>
-        <p class="ai-note"><span class="ai-icon">🤖</span><span>При создании этого сайта мне помогала нейросеть (ИИ) в роли технического ассистента.</span></p>
-    </div>
+        <h2>🚀 Мой проект</h2>
+        <p><strong>Образовательный сайт по физике</strong> — мой главный авторский проект, объединяющий педагогику и технологии. Создан с помощью ИИ — от концепции до вёрстки.</p>
+        <ul>
+            <li>🎯 Интерактивные тренажёры для подготовки к ОГЭ и ЕГЭ</li>
+            <li>📖 Авторская книга сказок — физика через истории и образы</li>
+            <li>👩‍🏫 Раздел для учителей — методические материалы и идеи уроков</li>
+            <li>👨‍👩‍👧 Раздел для родителей — как поддержать ребёнка в изучении физики</li>
+        </ul>
 
-    <a class="back" href="../index.html">← Вернуться на главную</a>
-</div>
+        <h2>💡 Что такое вайбкодинг?</h2>
+        <p>Вайбкодинг — это подход к разработке, при котором человек формулирует задачу, а нейросеть помогает её реализовать. Я не просто использую ИИ как инструмент — я выстраиваю с ним диалог: пишу чёткие инструкции, создаю структурированные файлы контекста (CLAUDE.md), итеративно улучшаю результат.</p>
+        <p>Это не магия. Это новая профессия, которую я осваиваю каждый день 🧠⚡</p>
+
+        <h2>🌱 Сейчас я учусь</h2>
+        <ul>
+            <li>JavaScript — углубляю знания</li>
+            <li>Git & GitHub — осваиваю командную разработку</li>
+            <li>Промпт-инжиниринг — совершенствую мастерство общения с ИИ</li>
+            <li>Веб-приложения — от статики к полноценным динамическим сервисам</li>
+        </ul>
+
+        <h2>🤝 Давайте сотрудничать!</h2>
+        <p>Меня интересуют проекты на пересечении образования, физики и технологий. Если вы работаете в EdTech, развиваете вайбкодинг-сообщество или создаёте образовательные инструменты — я рада общению!</p>
+        <p>Пишите мне на почту: <strong>nvisoch@mail.ru</strong></p>
+
+        <a href="../index.html" class="back">← Вернуться на главную</a>
+    </div>
 </body>
 </html>
