@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Физика — образовательный сайт</title>
+    <title>Надежда Высочкина — репетитор по физике</title>
+    <meta name="description" content="Репетитор по физике с 30-летним стажем. Подготовка к ОГЭ и ЕГЭ, интерактивные тренажёры, авторская книга «Физика в сказках». Петрозаводск, онлайн.">
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body {
@@ -18,17 +19,19 @@
             justify-content: center;
             padding: 40px 20px;
         }
-        .wrap { width: 100%; max-width: 960px; text-align: center; }
+        .wrap { width: 100%; max-width: 1000px; text-align: center; }
         .logo { font-size: 64px; margin-bottom: 10px; }
         h1 {
-            font-size: clamp(32px, 5vw, 52px);
+            font-size: clamp(30px, 5vw, 48px);
             background: linear-gradient(90deg, #4338ca, #0891b2);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
             margin-bottom: 12px;
         }
-        .subtitle { font-size: 18px; color: #4b5563; margin-bottom: 44px; }
+        .subtitle { font-size: 18px; color: #4b5563; margin-bottom: 10px; max-width: 640px; margin-left: auto; margin-right: auto; }
+        .badges { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-bottom: 36px; }
+        .badge { background: #fff; border: 1px solid #e5e7eb; border-radius: 999px; padding: 6px 14px; font-size: 14px; color: #374151; }
         .grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -51,6 +54,18 @@
         .btn:hover { transform: translateY(-6px); box-shadow: 0 18px 35px rgba(30, 41, 59, .25); }
         .btn .icon { font-size: 42px; }
         .btn small { font-size: 14px; font-weight: 400; opacity: .9; }
+        
+        .cta-row { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; margin-bottom: 44px; }
+        .cta {
+            display: inline-flex; align-items: center; gap: 10px;
+            padding: 16px 28px; border-radius: 14px;
+            font-size: 18px; font-weight: 700; text-decoration: none; color: #fff;
+            box-shadow: 0 10px 25px rgba(30, 41, 59, .2);
+            transition: transform .25s, box-shadow .25s;
+        }
+        .cta:hover { transform: translateY(-4px); box-shadow: 0 16px 30px rgba(30, 41, 59, .3); }
+        .cta-primary { background: linear-gradient(135deg, #f59e0b, #ea580c); }
+        
         .students { background: linear-gradient(135deg, #6366f1, #8b5cf6); }
         .teachers { background: linear-gradient(135deg, #0ea5e9, #0369a1); }
         .parents  { background: linear-gradient(135deg, #10b981, #047857); }
@@ -58,26 +73,52 @@
         .book     { background: linear-gradient(135deg, #ec4899, #be185d); }
         .author   { background: linear-gradient(135deg, #14b8a6, #0f766e); }
         .exams    { background: linear-gradient(135deg, #3b82f6, #1e3a8a); }
-        footer { margin-top: 48px; color: #6b7280; font-size: 14px; }
+        
+        .about { max-width: 760px; margin: 56px auto 0; text-align: left; background: #ffffffcc; border-radius: 20px; padding: 28px 30px; box-shadow: 0 10px 25px rgba(30,41,59,.08); }
+        .about h2 { font-size: 24px; margin-bottom: 12px; color: #312e81; }
+        .about p { color: #374151; line-height: 1.6; margin-bottom: 10px; }
+        .contacts { margin-top: 36px; display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+        .contacts a { color: #4338ca; text-decoration: none; font-weight: 600; padding: 10px 18px; border-radius: 12px; background: #fff; box-shadow: 0 4px 12px rgba(30,41,59,.08); }
+        .contacts a:hover { background: #eef2ff; }
+        footer { margin-top: 44px; color: #6b7280; font-size: 14px; }
     </style>
 </head>
 <body>
 <div class="wrap">
     <div class="logo">⚛️</div>
     <h1>Физика — это интересно!</h1>
-    <p class="subtitle">Теория, тренажёры и сказки о законах природы</p>
+    <p class="subtitle">Репетитор с 30-летним стажем. Готовлю к ОГЭ и ЕГЭ, помогаю полюбить физику — через тренажёры, сказки и живой диалог.</p>
+    <div class="badges">
+        <span class="badge">👩‍🏫 30+ лет в педагогике</span>
+        <span class="badge">📍 Петрозаводск / онлайн</span>
+    </div>
+
+    <div class="cta-row">
+        <a class="cta cta-primary" href="contacts/index.html">✉️ Записаться на занятие</a>
+    </div>
 
     <div class="grid">
         <a class="btn students" href="detyam/index.html"><span class="icon">🎒</span>Для учеников<small>Теория, тренажёры и книга</small></a>
-        <a class="btn teachers" href="uchitelyam/index.html"><span class="icon">💼</span>Для учителей<small>Материалы к урокам</small></a>
-        <a class="btn parents" href="roditelyam/index.html"><span class="icon">👨‍👩‍👧</span>Для родителей<small>Как помочь ребёнку</small></a>
+        <a class="btn exams" href="exams/index.html"><span class="icon">🎓</span>ОГЭ / ЕГЭ<small>Задания по разделам экзамена</small></a>
         <a class="btn trainers" href="trenazhery/index.html"><span class="icon">🎯</span>Тренажёры<small>Проверь свои знания</small></a>
         <a class="btn book" href="book/book.html"><span class="icon">📖</span>Книга «Физика в сказках»<small>Законы физики в волшебных историях</small></a>
-        <a class="btn exams" href="exams/index.html"><span class="icon">🎓</span>Подготовка к ОГЭ/ЕГЭ<small>Задания по разделам экзамена</small></a>
-        <a class="btn author" href="obo-mne/index.html"><span class="icon">👩‍🏫</span>Об авторе и книге<small>Кто написал и для кого</small></a>
+        <a class="btn teachers" href="uchitelyam/index.html"><span class="icon">💼</span>Для учителей<small>Материалы к урокам</small></a>
+        <a class="btn parents" href="roditelyam/index.html"><span class="icon">👨‍👩‍👧</span>Для родителей<small>Как помочь ребёнку</small></a>
+        <a class="btn author" href="obo-mne/index.html"><span class="icon">👩‍🏫</span>Об авторе<small>Кто я и для кого этот сайт</small></a>
     </div>
 
-    <footer>© Образовательный сайт по физике</footer>
+    <section class="about">
+        <h2>Обо мне</h2>
+        <p>Я — учитель физики с более чем 30-летним стажем. Сейчас открываю для себя новый мир — разработку с помощью искусственного интеллекта. Мой путь: от формул и уравнений — к коду и нейросетям.</p>
+        <p>«Физика учит видеть законы, лежащие в основе всего. ИИ учит создавать новое из этих законов».</p>
+    </section>
+
+    <div class="contacts">
+        <a href="mailto:nvisoch@mail.ru">✉️ nvisoch@mail.ru</a>
+        <a href="https://github.com/nvysockina-collab" target="_blank">GitHub</a>
+    </div>
+
+    <footer>© Надежда Высочкина, учитель физики · Создано с помощью ИИ ⚛️</footer>
 </div>
 </body>
 </html>
