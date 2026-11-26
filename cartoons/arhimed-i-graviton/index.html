@@ -19,6 +19,14 @@ body{
   padding:18px 14px 40px;
 }
 .wrap{max-width:1000px;margin:0 auto}
+.back{
+  display:inline-block;margin:0 0 14px;color:#4338ca;text-decoration:none;
+  font-weight:600;font-size:15px;padding:7px 14px;border-radius:999px;background:#fff;
+  box-shadow:0 3px 10px rgba(49,46,129,.13);transition:transform .15s,box-shadow .15s;
+}
+.back:hover{text-decoration:underline;transform:translateY(-1px);
+  box-shadow:0 6px 16px rgba(49,46,129,.2)}
+.back:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
 header{text-align:center;margin-bottom:14px}
 h1{font-size:clamp(19px,3.4vw,29px);margin:0 0 4px;line-height:1.25}
 .sub{color:var(--ink-soft);font-size:14px;margin:0}
@@ -82,6 +90,7 @@ footer a{color:var(--indigo)}
 </head>
 <body>
 <div class="wrap">
+  <a class="back" href="../../detyam/">← К сказкам</a>
   <header>
     <h1>Как царевич Архимед посрамил царя Гравитона</h1>
     <p class="sub">Мультфильм по сказке из книги «Физика в сказках» · Надежда Высочкина</p>
